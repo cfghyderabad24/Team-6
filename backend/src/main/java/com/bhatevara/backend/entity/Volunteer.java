@@ -26,6 +26,8 @@ public class Volunteer {
 
     String email;
 
+    String password;
+
     String phno;
 
     Long ngoid;

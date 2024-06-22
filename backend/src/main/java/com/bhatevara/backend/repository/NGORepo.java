@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NGORepo extends JpaRepository<NGO,Long> {
     //no code needed
+    NGO findByname(String name);
+
 }

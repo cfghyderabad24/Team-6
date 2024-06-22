@@ -174,18 +174,18 @@ public class AdminController {
         return "Finalized successed...";
     }
 
-    @GetMapping("/applications/renewal/volunteer")
-    public String getRenewalApplicationsReadyForVolunteer(Model model) {
-        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
-        model.addAttribute("applications", renewalApplications);
-        return "volunteerPendingRenewalApplications";
-    }
+//    @GetMapping("/applications/renewal/volunteer")
+//    public String getRenewalApplicationsReadyForVolunteer(Model model) {
+//        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
+//        model.addAttribute("applications", renewalApplications);
+//        return "volunteerPendingRenewalApplications";
+//    }
 
-    @PostMapping("/applications/{id}/renewal/verify")
-    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status, Model model) {
-        applicationFormService.updateVolunteerStatus(id, status, remark);
-        return "redirect:/admin/applications/renewal/volunteer";
-    }
+//    @PostMapping("/applications/{id}/renewal/verify")
+//    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status, Model model) {
+//        applicationFormService.updateVolunteerStatus(id, status, remark);
+//        return "redirect:/admin/applications/renewal/volunteer";
+//    }
 
 
 
@@ -213,35 +213,35 @@ public class AdminController {
 
     // Methods for handling renewal applications
 
-    @GetMapping("/applications/renewal")
-    public List<ApplicationForm> getPendingRenewalApplications() {
-        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
-        return pendingRenewalApplications;
-    }
+//    @GetMapping("/applications/renewal")
+//    public List<ApplicationForm> getPendingRenewalApplications() {
+//        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
+//        return pendingRenewalApplications;
+//    }
+//
+//    @PostMapping("/applications/{id}/renewal/approve")
+//    public String approveRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+//        applicationFormService.updatePngoStatus(id, true, remark);
+//        return "Approved Renewal";
+//    }
+//
+//    @PostMapping("/applications/{id}/renewal/reject")
+//    public String rejectRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+//        applicationFormService.updatePngoStatus(id, false, remark);
+//        return "Rejected Renewal";
+//    }
 
-    @PostMapping("/applications/{id}/renewal/approve")
-    public String approveRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
-        applicationFormService.updatePngoStatus(id, true, remark);
-        return "Approved Renewal";
-    }
-
-    @PostMapping("/applications/{id}/renewal/reject")
-    public String rejectRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
-        applicationFormService.updatePngoStatus(id, false, remark);
-        return "Rejected Renewal";
-    }
-
-    @GetMapping("/applications/renewal/volunteer")
-    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
-        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
-        return renewalApplications;
-    }
-
-    @PostMapping("/applications/{id}/renewal/verify")
-    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status) {
-        applicationFormService.updateVolunteerStatus(id, status, remark);
-        return "Volunteer Verified";
-    }
+//    @GetMapping("/applications/renewal/volunteer")
+//    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+//        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
+//        return renewalApplications;
+//    }
+//
+//    @PostMapping("/applications/{id}/renewal/verify")
+//    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status) {
+//        applicationFormService.updateVolunteerStatus(id, status, remark);
+//        return "Volunteer Verified";
+//    }
 
     @GetMapping("/applications/renewal/final")
     public List<ApplicationForm> getRenewalApplicationsForFinalDecision() {

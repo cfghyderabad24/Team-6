@@ -37,5 +37,17 @@ public class VolunteerController {
         return ResponseEntity.ok(applicationFormService.getApplicationFormById(id).get());
     }
 
+    @GetMapping("/applications/renewal/volunteer")
+    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
+        return renewalApplications;
+    }
+
+    @PostMapping("/applications/{id}/renewal/verify")
+    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status) {
+        applicationFormService.updateVolunteerStatus(id, status, remark);
+        return "Volunteer Verified";
+    }
+
 
 }

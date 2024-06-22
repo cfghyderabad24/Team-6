@@ -35,5 +35,24 @@ public class PartnerController {
     }
 
 
+    @GetMapping("/applications/renewal")
+    public List<ApplicationForm> getPendingRenewalApplications() {
+        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
+        return pendingRenewalApplications;
+    }
+
+    @PostMapping("/applications/{id}/renewal/approve")
+    public String approveRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+        applicationFormService.updatePngoStatus(id, true, remark);
+        return "Approved Renewal";
+    }
+
+    @PostMapping("/applications/{id}/renewal/reject")
+    public String rejectRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+        applicationFormService.updatePngoStatus(id, false, remark);
+        return "Rejected Renewal";
+    }
+
+
 
 }
