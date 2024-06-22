@@ -3,6 +3,8 @@ package com.bhatevara.backend.controller;
 import com.bhatevara.backend.entity.Admin;
 import com.bhatevara.backend.entity.Partner;
 import com.bhatevara.backend.entity.Volunteer;
+import com.bhatevara.backend.repository.AlumniRepo;
+import com.bhatevara.backend.service.Alumniservice;
 import com.bhatevara.backend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,24 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    Alumniservice alumniservice;
+
+    @GetMapping("/alumni")
+    public String showalumniloginpage(){
+        return "alumnologinpage";
+    }
+
+    @PostMapping("/almuni")
+    public String alumniLogin(@RequestParam String username, @RequestParam String password) {
+        Admin admin = loginService.validateAdmin(username, password);
+        if (admin != null) {
+            return "Success";
+        } else {
+            return "Failed to Success";
+        }
+    }
 
     @GetMapping("/admin")
     public String showAdminLoginPage() {
