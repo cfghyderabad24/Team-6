@@ -8,7 +8,11 @@ public interface NgoService {
 
     public Ngo addNgo(Ngo ngo);
     public Ngo updateNgo(Ngo ngo);
-    public Ngo getNgo(String ngoId);
+
+    Ngo getNgo(Ngo ngoname);
+
     public List<Ngo> getAllNgos();
+
+    public String deletebyname(Ngo ngoname);
 
 }

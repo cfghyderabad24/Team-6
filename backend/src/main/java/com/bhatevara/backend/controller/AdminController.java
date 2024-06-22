@@ -1,7 +1,6 @@
 package com.bhatevara.backend.controller;
 
 
-
 import com.bhatevara.backend.entity.Ngo;
 import com.bhatevara.backend.entity.NgoEmployee;
 import com.bhatevara.backend.entity.User;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/apis/admin")
 public class AdminController {
 
     @Autowired
@@ -27,7 +26,6 @@ public class AdminController {
     @Autowired
     private NgoEmployeeService ngoEmployeeService;
 
-
     @PostMapping("/addVolunteer")
     public ResponseEntity<User> addVolunteer(@RequestBody User user) {
         return ResponseEntity.ok(userService.addUser(user));
@@ -35,7 +33,7 @@ public class AdminController {
 
     @PostMapping("/addNgo")
     public ResponseEntity<Ngo> addNgo(@RequestBody Ngo ngo) {
-       return ResponseEntity.ok(ngoService.addNgo(ngo));
+        return ResponseEntity.ok(ngoService.addNgo(ngo));
     }
 
     @GetMapping("/getAllNgos")
@@ -48,6 +46,5 @@ public class AdminController {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
-    
-    
+
 }
