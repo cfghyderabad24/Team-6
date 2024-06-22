@@ -6,7 +6,11 @@
 <body>
 <h1>Application Form</h1>
 
+<<<<<<< HEAD
 <form th:action="@{/apis/bhatevara/application-form}" th:object="${applicationForm}" method="post" enctype="multipart/form-data">
+=======
+<form th:action="@{/application-form}" th:object="${applicationForm}" method="post" enctype="multipart/form-data">
+>>>>>>> 1c0287bb7e528cd5493517bdcfa47354c3d18b6f
     <label for="adhar_id">Aadhar ID:</label>
     <input type="text" id="adhar_id" th:field="*{adhar_id}" required><br>
 
@@ -59,4 +63,8 @@
     <p>Form submitted successfully!</p>
 </div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 1c0287bb7e528cd5493517bdcfa47354c3d18b6f
