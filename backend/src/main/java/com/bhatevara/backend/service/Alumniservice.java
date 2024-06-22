@@ -14,7 +14,7 @@ public class Alumniservice {
     @Autowired
     AlumniRepo alumniRepo;
 
-    public Optional<Alumni> findByEmail(String email) {
-        return Optional.ofNullable(alumniRepo.findByemail(email));
+    public Alumni findByUser(String user) {
+        return alumniRepo.findByusername(user);
     }
 }
