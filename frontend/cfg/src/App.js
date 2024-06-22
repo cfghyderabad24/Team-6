@@ -11,6 +11,7 @@ import NGOPage from './components/NGOPage';
 import NGODetails from './components/NGODetails';
 import NGOUpdateStatus from './components/NGOUpdateStatus';
 import './App.css';
+import StudentForm from './components/StudentForm';
 
 const initialVolunteers = [
   {
@@ -115,6 +116,7 @@ function App() {
           <Route path="/ngo" element={<NGOPage initialStudents={students} setStudents={setStudents} />} />
           <Route path="/ngo-details/:id" element={<NGODetails students={students} />} />
           <Route path="/ngo-update-status/:id" element={<NGOUpdateStatus students={students} setStudents={setStudents} />} />
+          <Route path='/studentForm' element={<StudentForm/>} />
         </Routes>
       </div>
     </Router>
