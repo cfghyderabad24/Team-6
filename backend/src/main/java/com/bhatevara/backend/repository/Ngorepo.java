@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Ngorepo extends JpaRepository<Ngo, Long> {
-    Ngo findbyEmail(String email);
 
-    Ngo findbyName(String name);
 }

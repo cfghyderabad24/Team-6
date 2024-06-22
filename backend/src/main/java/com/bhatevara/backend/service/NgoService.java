@@ -15,4 +15,6 @@ public interface NgoService {
 
     public String deletebyname(Ngo ngoname);
 
+    public Ngo findByEmail(String email);
+
 }
