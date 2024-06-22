@@ -1,5 +1,5 @@
-/* src/UpdateStatusPage.css */
-.update-status-page {
+/* src/RegistrationForm.css */
+.registration-form {
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -9,34 +9,34 @@
     text-align: left;
   }
   
-  .update-status-page h1 {
+  .registration-form h2 {
     margin-bottom: 20px;
   }
   
-  .update-status-page h2 {
-    margin-bottom: 20px;
+  .registration-form form {
+    display: flex;
+    flex-direction: column;
   }
   
-  .update-status-page label {
-    display: block;
+  .registration-form label {
     margin-bottom: 10px;
   }
   
-  .update-status-page textarea {
+  .registration-form input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
   
-  .update-status-page button {
+  .registration-form button {
     background-color: #ff7f50;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
   }
   

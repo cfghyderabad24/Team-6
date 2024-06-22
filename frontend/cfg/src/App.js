@@ -1,5 +1,6 @@
 // src/App.js
 import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import VolunteerPage from './components/VolunteerPage';
 import VolunteerDetails from './components/VolunteerDetails';
@@ -10,6 +11,8 @@ import FounderUpdateStatus from './components/FounderUpdateStatus';
 import NGOPage from './components/NGOPage';
 import NGODetails from './components/NGODetails';
 import NGOUpdateStatus from './components/NGOUpdateStatus';
+import AlumniPage from './components/AlumniPage';
+import RegistrationForm from './components/RegistrationForm';
 import './App.css';
 import StudentForm from './components/StudentForm';
 import FounderCard from './components/FounderCard';
@@ -26,7 +29,7 @@ const initialVolunteers = [
   {
     id: '1',
     formNumber: '12345',
-    studentName: 'Mr. Hassan Magdy',
+    studentName: 'Mr. Vansh Magdy',
     courseName: 'Computer Science',
     courseDuration: '4 years',
     currentYear: '2nd year',
@@ -41,7 +44,7 @@ const initialVolunteers = [
     state: 'Alexandria',
     whatsappNumber: '369 258 147',
     alternateMobile: '369 258 148',
-    email: 'h@procrew.pro',
+    email: 'h@sadfljasdf.com',
     bankAccountNumber: '123456789',
     status: 'Available',
     documentName: 'Transcript.pdf',
@@ -107,10 +110,12 @@ const initialStudents = [
   // Add more students as needed
 ];
 
+
 function App() {
-  const [volunteers, setVolunteers] = React.useState(initialVolunteers);
-  const [founders, setFounders] = React.useState(initialFounders);
-  const [students, setStudents] = React.useState(initialStudents);
+  const [volunteers, setVolunteers] = useState(initialVolunteers);
+  const [founders, setFounders] = useState(initialFounders);
+  const [students, setStudents] = useState(initialStudents);
+ 
 
   return (
     <Router>
@@ -126,6 +131,8 @@ function App() {
           <Route path="/ngo" element={<NGOPage />} />
           <Route path="/ngo-details/:id" element={<NGODetails students={students} />} />
           <Route path="/ngo-update-status/:id" element={<NGOUpdateStatus students={students} setStudents={setStudents} />} />
+          <Route path="/alumni" element={<AlumniPage  />} />
+          <Route path="/register/:id" element={<RegistrationForm  />} />
           <Route path='/studentForm' element={<StudentForm/>} />
           <Route path='/renewalForm' element={<RenewalForm/>} />
 
