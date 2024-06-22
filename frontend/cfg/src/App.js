@@ -13,6 +13,9 @@ import NGOUpdateStatus from './components/NGOUpdateStatus';
 import './App.css';
 import StudentForm from './components/StudentForm';
 import FounderCard from './components/FounderCard';
+import RenewalForm from './components/RenewalForm';
+import NgoRenewalUpdate from './components/NgoRenewalUpdate';
+import NgoRenewal from './components/NgoRenewal';
 
 const initialVolunteers = [
   {
@@ -118,6 +121,9 @@ function App() {
           <Route path="/ngo-details/:id" element={<NGODetails students={students} />} />
           <Route path="/ngo-update-status/:id" element={<NGOUpdateStatus students={students} setStudents={setStudents} />} />
           <Route path='/studentForm' element={<StudentForm/>} />
+          <Route path='/renewalForm' element={<RenewalForm/>} />
+
+          <Route path='/ngoRenewal' element={<NgoRenewal/>}/>
         </Routes>
       </div>
     </Router>

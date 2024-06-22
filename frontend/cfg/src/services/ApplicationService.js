@@ -26,6 +26,17 @@ export const fetchApplications = async () => {
   }
 };
 
+export const fetchRenewalApplications = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/renewal`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching applications:', error);
+    throw error;
+  }
+};
+
+
 
 export const approveApplication = async (id, remark) => {
   try {

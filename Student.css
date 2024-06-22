@@ -1,0 +1,46 @@
+.student-container {
+    padding: 20px;
+    background: white;
+  }
+  
+  .student-container h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .student-table th, .student-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .student-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .student-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .student-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .chart-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pie-chart {
+    width: 300px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+  }
+  

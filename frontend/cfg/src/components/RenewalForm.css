@@ -1,0 +1,112 @@
+.form-container { 
+  width: 60%; 
+  margin: 0 auto; 
+  background-color: #f9f9f9; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+} 
+
+.form-header { 
+  text-align: center; 
+} 
+
+.form-header img { 
+  width: 100%; /* Make the image responsive */ 
+  max-height: 250px; /* Set a maximum height */ 
+  object-fit: contain; /* Ensure the entire image is visible without being cut off */ 
+  border-radius: 10px; /* Optional: rounded corners */ 
+  margin-bottom: 20px; /* Space below the image */ 
+} 
+
+.form-header h1 { 
+  font-size: 24px; 
+  margin-bottom: 30px; 
+  margin-top: 30px; 
+} 
+
+.form-group { 
+  display: flex; 
+  flex-direction: column; 
+  margin-bottom: 15px; 
+} 
+
+.form-group label { 
+  margin-bottom: 5px; 
+  font-weight: bold; 
+} 
+
+.form-group input[type="text"], 
+.form-group input[type="email"], 
+.form-group input[type="tel"], 
+.form-group input[type="date"], 
+.form-group input[type="number"], 
+.form-group select, 
+.form-group textarea { 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  width: 100%;
+  box-sizing: border-box;
+} 
+
+.form-group input[type="file"] { 
+  margin-top: 10px; 
+} 
+
+.form-group input[type="checkbox"] { 
+  margin-right: 10px; 
+} 
+
+.form-group button { 
+  padding: 10px 15px; 
+  font-size: 16px; 
+  border: none; 
+  border-radius: 5px; 
+  background-color: #007bff; 
+  color: #fff; 
+  cursor: pointer; 
+  margin-top: 20px;
+} 
+
+.form-group button:hover { 
+  background-color: #0056b3; 
+} 
+
+/* Additional styles for new fields */ 
+.renewal-form-group { 
+  display: flex; 
+  flex-direction: column; 
+  margin-bottom: 15px; 
+} 
+
+.renewal-form-group label { 
+  margin-bottom: 5px; 
+  font-weight: bold; 
+} 
+
+.renewal-form-group input[type="text"], 
+.renewal-form-group input[type="number"] { 
+  padding: 10px; 
+  font-size: 16px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+}
+
+/* Flexbox layout for better alignment */
+.form-group.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group.flex label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-group.flex input,
+.form-group.flex select,
+.form-group.flex textarea {
+  flex: 2;
+}
