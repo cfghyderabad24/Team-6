@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlumniRepo extends JpaRepository<Alumni,String> {
-    Alumni findByemail(String email);
+    Alumni findByusername(String username);
 }

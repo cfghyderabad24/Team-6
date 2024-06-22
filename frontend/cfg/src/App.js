@@ -16,6 +16,13 @@ import RegistrationForm from './components/RegistrationForm';
 import './App.css';
 import StudentForm from './components/StudentForm';
 import FounderCard from './components/FounderCard';
+import RenewalForm from './components/RenewalForm';
+import NgoRenewalUpdate from './components/NgoRenewalUpdate';
+import NgoRenewal from './components/NgoRenewal';
+import VolunteerRenewal from './components/VolunteerRenewal';
+import PartnerLogin from './components/PartnerLogin';
+import VolunteerLogin from './components/VolunteerLogin';
+import AdminLogin from './components/AdminLogin';
 
 const initialVolunteers = [
   {
@@ -125,6 +132,14 @@ function App() {
           <Route path="/alumni" element={<AlumniPage  />} />
           <Route path="/register/:id" element={<RegistrationForm  />} />
           <Route path='/studentForm' element={<StudentForm/>} />
+          <Route path='/renewalForm' element={<RenewalForm/>} />
+
+          <Route path='/ngoRenewal' element={<NgoRenewal/>}/>
+          <Route path='/volunteerRenewal' element={<VolunteerRenewal/>}/>
+          <Route path='/partnerlogin' element={<PartnerLogin/>}/>
+          <Route path='/volunteerLogin' element={<VolunteerLogin/>}/> 
+          <Route path='/adminLogin' element={<AdminLogin/>}/>
+
         </Routes>
       </div>
     </Router>
