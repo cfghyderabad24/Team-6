@@ -19,22 +19,16 @@ public class ApplicationController {
     @Autowired
     ApplicationFormServiceimple applicationFormService;
 
-<<<<<<< HEAD
-//    @GetMapping("/form")
-//    public String showForm() {
-//        return "applicationForm"; // This returns the applicationForm.html Thymeleaf template
-//    }
-//
 
-=======
->>>>>>> 1c0287bb7e528cd5493517bdcfa47354c3d18b6f
+
+
     @GetMapping("/application-form")
     public String showForm(Model model) {
         model.addAttribute("applicationForm", new ApplicationForm());
         return "applicationForm";
     }
 
-<<<<<<< HEAD
+
     @PostMapping("/application-form")
     public String submitForm(@ModelAttribute ApplicationForm applicationForm,
                              @RequestParam("twelvethCertFile") MultipartFile twelvethCertFile,
@@ -45,6 +39,4 @@ public class ApplicationController {
         return "redirect:/application-form?success";
     }
 
-=======
->>>>>>> 1c0287bb7e528cd5493517bdcfa47354c3d18b6f
 }
