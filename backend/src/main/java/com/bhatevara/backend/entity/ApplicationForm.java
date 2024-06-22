@@ -20,6 +20,10 @@ public class ApplicationForm {
     private String email;
     private String phone;
 
+    private byte[] tenth_cert;
+    private byte[] twelveth_cert;
+    private byte[] fee_structure;
+
     private Long pngo_id;
 
     private boolean pngo_status;
