@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AdminController {
 
     @Autowired
@@ -156,9 +157,14 @@ public class AdminController {
 
 
     @GetMapping("/applications/final")
-    public List<ApplicationForm> getApplicationsForFinalDecision() {
+    public ResponseEntity<List<ApplicationForm>> getApplicationsForFinalDecision() {
         List<ApplicationForm> finalApplications = applicationFormService.getApplicationsForFinalDecision();
-        return finalApplications;
+        return ResponseEntity.ok(finalApplications);
+    }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<ApplicationForm> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(applicationFormService.getApplicationFormById(id).get());
     }
 
     @PostMapping("/applications/{id}/finalize")
