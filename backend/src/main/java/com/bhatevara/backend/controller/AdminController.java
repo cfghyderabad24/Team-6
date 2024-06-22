@@ -1,21 +1,24 @@
 package com.bhatevara.backend.controller;
 
 import com.bhatevara.backend.entity.ApplicationForm;
+import com.bhatevara.backend.entity.NGO;
+import com.bhatevara.backend.entity.Partner;
+import com.bhatevara.backend.entity.Volunteer;
 import com.bhatevara.backend.service.ApplicationFormService;
+import com.bhatevara.backend.service.PartnerService;
+import com.bhatevara.backend.service.VolunteerService;
+import com.bhatevara.backend.service.ngoservice;
+import jakarta.mail.Part;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -204,5 +207,134 @@ public class AdminController {
     public String ngoRejectApplication(@PathVariable Long id, @RequestParam("remark") String remark, Model model) {
         applicationFormService.updatePngoStatus(id, false, remark);
         return "redirect:/admin/applications/ngo";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //this code is need to be updated please wait ...
+
+
+    @Autowired
+    private ngoservice ngoService;
+
+    @Autowired
+    private PartnerService partnerService;
+
+
+    @Autowired
+    private VolunteerService volunteerService;
+
+    @GetMapping("/allngos")
+    public List<NGO> getallngos(){
+        return ngoService.getall();
+    }
+
+    @GetMapping("/findbyidngo/{id}")
+    public Optional<NGO> getbyidngo(@PathVariable Long id){
+        return ngoService.findById(id);
+    }
+
+    @GetMapping("/savengo")
+    public ResponseEntity<String> savengo(NGO ngo){
+        ngoService.save(ngo);
+
+        return ResponseEntity.ok("Success");
+    }
+
+    @GetMapping("/deletebyidngo/{id}")
+    public ResponseEntity<String> deletebyid(@PathVariable Long id){
+        ngoService.delete(id);
+        return ResponseEntity.ok("Deleted");
+    }
+
+
+
+
+    @GetMapping("/allpartners")
+    public List<Partner> getallpartners(){
+        return partnerService.findAll();
+    }
+
+    @GetMapping("/findbyidpar/{id}")
+    public Optional<Partner> getbyidpartener(@PathVariable Long id){
+        return partnerService.findById(id);
+    }
+
+    @GetMapping("/savepartner")
+    public ResponseEntity<String> savengo(Partner partner){
+        partnerService.save(partner);
+
+        return ResponseEntity.ok("Success");
+    }
+
+    @GetMapping("/deletebyidpar/{id}")
+    public ResponseEntity<String> deletebyidpartner(@PathVariable Long id){
+        partnerService.delete(id);
+        return ResponseEntity.ok("Deleted");
+    }
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/allvolunteers")
+    public List<Volunteer> getallvol(){
+        return volunteerService.findAll();
+    }
+
+    @GetMapping("/findbyidvol/{id}")
+    public Optional<Volunteer> getbyidvol(@PathVariable Long id){
+        return volunteerService.findById(id);
+    }
+
+    @GetMapping("/savevol")
+    public ResponseEntity<String> savevol(Volunteer vol){
+        volunteerService.save(vol);
+
+        return ResponseEntity.ok("Success");
+    }
+
+    @GetMapping("/deletebyidvol/{id}")
+    public ResponseEntity<String> deletebyidvol(@PathVariable Long id){
+        volunteerService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 }
