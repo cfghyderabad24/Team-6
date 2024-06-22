@@ -29,4 +29,15 @@ public class ApplicationFormService {
         applicationFormRepository.deleteById(id);
     }
 
+    public List<ApplicationForm> getPendingApplications() {
+        return applicationFormRepository.findByPngoStatusFalse();
+    }
+
+    public void updatePngoStatus(Long id, boolean status, String remark) {
+        applicationFormRepository.findById(id).ifPresent(applicationForm -> {
+            applicationForm.setPngoStatus(status);
+            applicationForm.setPngoRemark(remark);
+            applicationFormRepository.save(applicationForm);
+        });
+    }
 }

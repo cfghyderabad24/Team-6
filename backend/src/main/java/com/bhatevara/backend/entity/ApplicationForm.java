@@ -1,7 +1,5 @@
 package com.bhatevara.backend.entity;
 
-
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -60,6 +58,22 @@ public class ApplicationForm {
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] feeStructure;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] lastYearFeeReceipts;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] essay;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] aadhaarCard;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] admissionConfirmationLetter;
 
     private boolean pngoStatus;
     private String pngoRemark;
