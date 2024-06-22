@@ -14,5 +14,10 @@ public interface ApplicationFormRepository extends JpaRepository<ApplicationForm
     List<ApplicationForm> findByPngoStatusTrueAndVolunteerStatusFalse();
 
     List<ApplicationForm> findByIsRenewalAndPngoStatusAndVolunteerStatus(boolean isRenewal, boolean pngoStatus, boolean volunteerStatus);
+
+
+    List<ApplicationForm> findByIsRenewalAndPngoStatus(boolean b, boolean b1);
+
+    List<ApplicationForm> findByIsRenewalAndVolunteerStatusAndBoardStatus(boolean b, boolean b1, boolean b2);
 }
 

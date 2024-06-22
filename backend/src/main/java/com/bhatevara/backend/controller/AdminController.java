@@ -215,6 +215,58 @@ public class AdminController {
 
 
 
+    // Methods for handling renewal applications
+
+    @GetMapping("/applications/renewal")
+    public List<ApplicationForm> getPendingRenewalApplications() {
+        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
+        return pendingRenewalApplications;
+    }
+
+    @PostMapping("/applications/{id}/renewal/approve")
+    public String approveRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+        applicationFormService.updatePngoStatus(id, true, remark);
+        return "Approved Renewal";
+    }
+
+    @PostMapping("/applications/{id}/renewal/reject")
+    public String rejectRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+        applicationFormService.updatePngoStatus(id, false, remark);
+        return "Rejected Renewal";
+    }
+
+    @GetMapping("/applications/renewal/volunteer")
+    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
+        return renewalApplications;
+    }
+
+    @PostMapping("/applications/{id}/renewal/verify")
+    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status) {
+        applicationFormService.updateVolunteerStatus(id, status, remark);
+        return "Volunteer Verified";
+    }
+
+    @GetMapping("/applications/renewal/final")
+    public List<ApplicationForm> getRenewalApplicationsForFinalDecision() {
+        List<ApplicationForm> renewalFinalApplications = applicationFormService.getRenewalApplicationsForFinalDecision();
+        return renewalFinalApplications;
+    }
+
+    @PostMapping("/applications/{id}/renewal/finalize")
+    public String finalizeRenewalApplication(
+            @PathVariable Long id,
+            @RequestParam("decision") String decision,
+            @RequestParam("remark") String remark,
+            @RequestParam("amount") double amount,
+            @RequestParam("chequeNumber") String chequeNumber,
+            @RequestParam("chequeDate") String chequeDate,
+            @RequestParam("chequePayee") String chequePayee) {
+        applicationFormService.updateFinalDecision(id, decision, remark, amount, chequeNumber, chequeDate, chequePayee);
+        return "Accepted by NGO";
+    }
+
+
 
 
 

@@ -100,5 +100,4 @@ public class ApplicationForm {
     private double lastYearFeePaid;
     private double lastYearScholarshipAmount;
 
-
 }
