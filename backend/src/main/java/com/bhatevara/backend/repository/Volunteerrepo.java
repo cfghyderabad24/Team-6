@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Volunteerrepo extends JpaRepository<Volunteer,Long> {
+    Volunteer findByemail(String email);
 }

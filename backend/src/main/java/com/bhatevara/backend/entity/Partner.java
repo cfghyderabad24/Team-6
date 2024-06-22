@@ -25,5 +25,7 @@ public class Partner {
 
     String email;
 
+    String password;
+
     String phno;
 }
