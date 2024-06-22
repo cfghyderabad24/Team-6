@@ -39,8 +39,8 @@ public class LoginService {
         return null;
     }
 
-    public Volunteer validateVolunteer(String username, String password) {
-        Volunteer volunteer = volunteerRepository.findByemail(username);
+    public Volunteer validateVolunteer(String email, String password) {
+        Volunteer volunteer = volunteerRepository.findByemail(email);
         if (volunteer != null && volunteer.getPassword().equals(password)) {
             return volunteer;
         }
