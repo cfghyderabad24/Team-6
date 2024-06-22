@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Choose Application</title>
+</head>
+<body>
+<h1>Choose Application Type</h1>
+<form th:action="@{/admin/applicationForm/new}" method="get">
+  <button type="submit">New Application</button>
+</form>
+<form th:action="@{/api/renewalForm}" method="get">
+  <button type="submit">Renewal Application</button>
+</form>
+</body>
+</html>

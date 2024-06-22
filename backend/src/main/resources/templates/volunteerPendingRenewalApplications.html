@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Volunteer Pending Renewal Applications</title>
+</head>
+<body>
+<h1>Renewal Applications Pending Volunteer Verification</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Form Number</th>
+        <th>Student Name</th>
+        <th>Course Name</th>
+        <th>Current Year</th>
+        <th>Institute Name</th>
+        <th>Documents</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appForm : ${applications}">
+        <td th:text="${appForm.formNumber}"></td>
+        <td th:text="${appForm.studentName}"></td>
+        <td th:text="${appForm.courseName}"></td>
+        <td th:text="${appForm.currentYear}"></td>
+        <td th:text="${appForm.instituteName}"></td>
+        <td>
+            <a th:href="@{/admin/applications/{id}/document/tenthCertificate(id=${appForm.id})}" target="_blank">10th Certificate</a><br>
+            <a th:href="@{/admin/applications/{id}/document/twelfthCertificate(id=${appForm.id})}" target="_blank">12th Certificate</a><br>
+            <a th:href="@{/admin/applications/{id}/document/bankStatements(id=${appForm.id})}" target="_blank">Bank Statements</a><br>
+            <a th:href="@{/admin/applications/{id}/document/aadhaarCard(id=${appForm.id})}" target="_blank">Aadhaar Card</a><br>
+            <a th:href="@{/admin/applications/{id}/document/panCard(id=${appForm.id})}" target="_blank">Pan Card</a><br>
+            <a th:href="@{/admin/applications/{id}/document/incomeProof(id=${appForm.id})}" target="_blank">Income Proof</a><br>
+            <a th:href="@{/admin/applications/{id}/document/currentYearFeeReceipt(id=${appForm.id})}" target="_blank">Current Year Fee Receipt</a><br>
+            <a th:href="@{/admin/applications/{id}/document/feeStructure(id=${appForm.id})}" target="_blank">Fee Structure</a><br>
+            <a th:href="@{/admin/applications/{id}/document/lastYearFeeReceipts(id=${appForm.id})}" target="_blank">Last Year Fee Receipts</a><br>
+            <a th:href="@{/admin/applications/{id}/document/essay(id=${appForm.id})}" target="_blank">Essay</a><br>
+            <a th:href="@{/admin/applications/{id}/document/admissionConfirmationLetter(id=${appForm.id})}" target="_blank">Admission Confirmation Letter</a>
+        </td>
+        <td>
+            <form th:action="@{/admin/applications/{id}/renewal/verify(id=${appForm.id})}" method="post">
+                <input type="text" name="remark" placeholder="Remark" required>
+                <select name="status" required>
+                    <option value="true">Accept</option>
+                    <option value="false">Reject</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

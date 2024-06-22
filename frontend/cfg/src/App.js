@@ -14,6 +14,8 @@ import NGOUpdateStatus from './components/NGOUpdateStatus';
 import AlumniPage from './components/AlumniPage';
 import RegistrationForm from './components/RegistrationForm';
 import './App.css';
+import StudentForm from './components/StudentForm';
+import FounderCard from './components/FounderCard';
 
 const initialVolunteers = [
   {
@@ -111,17 +113,18 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<VolunteerPage initialVolunteers={volunteers} setVolunteers={setVolunteers} />} />
-          <Route path="/details/:id" element={<VolunteerDetails volunteers={volunteers} />} />
-          <Route path="/update-status/:id" element={<UpdateStatusPage volunteers={volunteers} setVolunteers={setVolunteers} />} />
-          <Route path="/founders" element={<FoundersPage initialFounders={founders} setFounders={setFounders} />} />
-          <Route path="/founder-details/:id" element={<FounderDetails founders={founders} />} />
-          <Route path="/founder-update-status/:id" element={<FounderUpdateStatus founders={founders} setFounders={setFounders} />} />
-          <Route path="/ngo" element={<NGOPage initialStudents={students} setStudents={setStudents} />} />
+          <Route path="/" element={<VolunteerPage/>} />
+          <Route path="/details/:id" element={<VolunteerDetails />} />
+          <Route path="/update-status/:id" element={<UpdateStatusPage/>} />
+          <Route path="/founders" element={<FoundersPage/>} />
+          <Route path="/founder-details/:id" element={<FounderDetails/>} />
+          <Route path="/founder-update-status/:id" element={<FounderUpdateStatus  />} />
+          <Route path="/ngo" element={<NGOPage />} />
           <Route path="/ngo-details/:id" element={<NGODetails students={students} />} />
           <Route path="/ngo-update-status/:id" element={<NGOUpdateStatus students={students} setStudents={setStudents} />} />
           <Route path="/alumni" element={<AlumniPage  />} />
           <Route path="/register/:id" element={<RegistrationForm  />} />
+          <Route path='/studentForm' element={<StudentForm/>} />
         </Routes>
       </div>
     </Router>

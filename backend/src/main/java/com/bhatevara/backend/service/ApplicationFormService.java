@@ -69,4 +69,25 @@ public class ApplicationFormService {
             applicationFormRepository.save(applicationForm);
         });
     }
+
+
+    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+        return applicationFormRepository.findByIsRenewalAndPngoStatusAndVolunteerStatus(true, true, false);
+    }
+
+    public List<ApplicationForm> getPendingRenewalApplications() {
+        return applicationFormRepository.findByIsRenewalAndPngoStatus(false, false);
+    }
+
+    public List<ApplicationForm> getRenewalApplicationsForFinalDecision() {
+        return applicationFormRepository.findByIsRenewalAndVolunteerStatusAndBoardStatus(true, true, false);
+    }
+
+//    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+//        return applicationFormRepository.findByIsRenewalAndPngoStatusAndVolunteerStatus(true, true, false);
+//    }
+
+//    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+//        return applicationFormRepository.findByIsRenewalTrueAndPngoStatusTrueAndVolunteerStatusFalse();
+//    }
 }

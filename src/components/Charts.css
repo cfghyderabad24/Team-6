@@ -1,0 +1,33 @@
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdf5e6;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .chart-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .total-scholarship h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .pie-chart,
+  .bar-chart {
+    flex: 1;
+    max-width: 500px;
+    margin: 10px;
+  }
+  
