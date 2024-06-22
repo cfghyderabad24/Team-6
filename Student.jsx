@@ -8,10 +8,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function Student() {
   const [studentData, setStudentData] = useState({
-    totalRegistered: 50,
-    passedNgoVerification: 35,
-    passedVolunteerVerification: 27,
-    presentStudents: 27,
+    totalRegistered: 35,
+    passedNgoVerification: 20,
+    passedVolunteerVerification: 12,
+    presentStudents: 12,
   });
 
   useEffect(() => {
@@ -56,6 +56,21 @@ function Student() {
     ]
   };
 
+  const hardcodedStudents = [
+    { id: 1, firstName: 'Manoj', lastName: 'Kumar', email: 'manoj@example.com' },
+    { id: 2, firstName: 'Gayatri', lastName: 'Patil', email: 'gayatri@example.com' },
+    { id: 3, firstName: 'Uday', lastName: 'Singh', email: 'uday@example.com' },
+    { id: 4, firstName: 'Santosh', lastName: 'Reddy', email: 'santosh@example.com' },
+    { id: 5, firstName: 'Suma', lastName: 'Rao', email: 'suma@example.com' },
+    { id: 6, firstName: 'Dhiraj', lastName: 'Sharma', email: 'dhiraj@example.com' },
+    { id: 7, firstName: 'Prathana', lastName: 'Mehta', email: 'prathana@example.com' },
+    { id: 8, firstName: 'Vikas', lastName: 'Jain', email: 'vikas@example.com' },
+    { id: 9, firstName: 'Sarla', lastName: 'Shah', email: 'sarla@example.com' },
+    { id: 10, firstName: 'Manoj', lastName: 'Naik', email: 'manojn@example.com' },
+    { id: 11, firstName: 'Rosy', lastName: 'Fernandes', email: 'rosy@example.com' },
+    { id: 12, firstName: 'Neelam', lastName: 'Singh', email: 'neelam@example.com' },
+  ];
+
   return (
     <div className="student-container">
       <h1>Student Information</h1>
@@ -85,11 +100,36 @@ function Student() {
           </tr>
         </tbody>
       </table>
+
       <div className="chart-container">
         <div className="pie-chart">
           <Pie data={pieData} />
         </div>
       </div>
+
+      <h2>Student Data</h2>
+      <table className="student-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {hardcodedStudents.map((student) => (
+            <tr key={student.id}>
+              <td>{student.id}</td>
+              <td>{student.firstName}</td>
+              <td>{student.lastName}</td>
+              <td>{student.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      
     </div>
   );
 }
