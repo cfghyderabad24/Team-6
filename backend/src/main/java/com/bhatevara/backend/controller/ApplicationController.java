@@ -20,8 +20,6 @@ public class ApplicationController {
     ApplicationFormServiceimple applicationFormService;
 
 
-
-
     @GetMapping("/application-form")
     public String showForm(Model model) {
         model.addAttribute("applicationForm", new ApplicationForm());

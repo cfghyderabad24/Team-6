@@ -7,7 +7,6 @@ import lombok.Data;
 @Entity
 @Data
 public class NgoEmployee {
-
     @Id
     private Long id;
     private String firstName;
