@@ -91,4 +91,14 @@ public class ApplicationForm {
     private String chequeNumber;
     private String chequeDate;
     private String chequePayee;
+
+
+    private boolean isRenewal;
+    private String lastYearCourseName;
+    private String lastYearInstitute;
+    private String lastYearAffiliatedUniversity;
+    private double lastYearFeePaid;
+    private double lastYearScholarshipAmount;
+
+
 }

@@ -69,4 +69,12 @@ public class ApplicationFormService {
             applicationFormRepository.save(applicationForm);
         });
     }
+
+    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+        return applicationFormRepository.findByIsRenewalAndPngoStatusAndVolunteerStatus(true, true, false);
+    }
+
+//    public List<ApplicationForm> getRenewalApplicationsReadyForVolunteer() {
+//        return applicationFormRepository.findByIsRenewalTrueAndPngoStatusTrueAndVolunteerStatusFalse();
+//    }
 }

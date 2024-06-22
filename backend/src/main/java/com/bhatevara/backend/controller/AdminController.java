@@ -22,43 +22,12 @@ public class AdminController {
     @Autowired
     private ApplicationFormService applicationFormService;
 
-    @GetMapping("/applications/new")
-    public String showApplicationForm(Model model) {
-        model.addAttribute("applicationForm", new ApplicationForm());
-        return "applicationForm";
-    }
 
-    @PostMapping("/applications")
-    public String saveApplicationForm(
-            @ModelAttribute ApplicationForm applicationForm,
-            @RequestParam("panCardFile") MultipartFile panCardFile,
-            @RequestParam("incomeProofFile") MultipartFile incomeProofFile,
-            @RequestParam("tenthCertificateFile") MultipartFile tenthCertificateFile,
-            @RequestParam("twelfthCertificateFile") MultipartFile twelfthCertificateFile,
-            @RequestParam("bankStatementsFile") MultipartFile bankStatementsFile,
-            @RequestParam("currentYearFeeReceiptFile") MultipartFile currentYearFeeReceiptFile,
-            @RequestParam("feeStructureFile") MultipartFile feeStructureFile,
-            @RequestParam("lastYearFeeReceiptsFile") MultipartFile lastYearFeeReceiptsFile,
-            @RequestParam("essayFile") MultipartFile essayFile,
-            @RequestParam("aadhaarCardFile") MultipartFile aadhaarCardFile,
-            @RequestParam("admissionConfirmationLetterFile") MultipartFile admissionConfirmationLetterFile,
-            Model model) throws IOException {
 
-        applicationForm.setPanCard(panCardFile.getBytes());
-        applicationForm.setIncomeProof(incomeProofFile.getBytes());
-        applicationForm.setTenthCertificate(tenthCertificateFile.getBytes());
-        applicationForm.setTwelfthCertificate(twelfthCertificateFile.getBytes());
-        applicationForm.setBankStatements(bankStatementsFile.getBytes());
-        applicationForm.setCurrentYearFeeReceipt(currentYearFeeReceiptFile.getBytes());
-        applicationForm.setFeeStructure(feeStructureFile.getBytes());
-        applicationForm.setLastYearFeeReceipts(lastYearFeeReceiptsFile.getBytes());
-        applicationForm.setEssay(essayFile.getBytes());
-        applicationForm.setAadhaarCard(aadhaarCardFile.getBytes());
-        applicationForm.setAdmissionConfirmationLetter(admissionConfirmationLetterFile.getBytes());
 
-        applicationFormService.saveApplicationForm(applicationForm);
-        model.addAttribute("applications", applicationFormService.getAllApplicationForms());
-        return "applications";
+    @GetMapping("/applicationSuccess")
+    public String applicationSuccess() {
+        return "applicationSuccess";
     }
 
     @GetMapping("/applications/pending")
@@ -93,11 +62,6 @@ public class AdminController {
         applicationFormService.updateVolunteerStatus(id, status, remark);
         return "redirect:/admin/applications/volunteer";
     }
-
-
-
-
-
 
     //final
     @GetMapping("/applications/final")
@@ -189,5 +153,40 @@ public class AdminController {
             }
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/applications/renewal/volunteer")
+    public String getRenewalApplicationsReadyForVolunteer(Model model) {
+        List<ApplicationForm> renewalApplications = applicationFormService.getRenewalApplicationsReadyForVolunteer();
+        model.addAttribute("applications", renewalApplications);
+        return "volunteerPendingRenewalApplications";
+    }
+
+    @PostMapping("/applications/{id}/renewal/verify")
+    public String verifyRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status, Model model) {
+        applicationFormService.updateVolunteerStatus(id, status, remark);
+        return "redirect:/admin/applications/renewal/volunteer";
+    }
+
+
+
+    // New methods for NGO validation
+    @GetMapping("/applications/ngo")
+    public String getApplicationsForNgo(Model model) {
+        List<ApplicationForm> ngoApplications = applicationFormService.getPendingApplications();
+        model.addAttribute("applications", ngoApplications);
+        return "ngoPendingApplications";
+    }
+
+    @PostMapping("/applications/{id}/ngoApprove")
+    public String ngoApproveApplication(@PathVariable Long id, @RequestParam("remark") String remark, Model model) {
+        applicationFormService.updatePngoStatus(id, true, remark);
+        return "redirect:/admin/applications/ngo";
+    }
+
+    @PostMapping("/applications/{id}/ngoReject")
+    public String ngoRejectApplication(@PathVariable Long id, @RequestParam("remark") String remark, Model model) {
+        applicationFormService.updatePngoStatus(id, false, remark);
+        return "redirect:/admin/applications/ngo";
     }
 }

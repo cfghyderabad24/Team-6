@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Application Form</title>
+</head>
+<body>
+<h1>Scholarship Application Form</h1>
+<form th:action="@{/admin/applications}" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Form Number:</label>
+        <input type="text" name="formNumber" th:value="${applicationForm.formNumber}" required />
+    </div>
+    <div>
+        <label>Full Name of the Student:</label>
+        <input type="text" name="studentName" th:value="${applicationForm.studentName}" required />
+    </div>
+    <div>
+        <label>Course Name:</label>
+        <input type="text" name="courseName" th:value="${applicationForm.courseName}" required />
+    </div>
+    <div>
+        <label>Total Duration (Years):</label>
+        <input type="number" name="courseDuration" th:value="${applicationForm.courseDuration}" required />
+    </div>
+    <div>
+        <label>Current Year:</label>
+        <input type="number" name="currentYear" th:value="${applicationForm.currentYear}" required />
+    </div>
+    <div>
+        <label>Name of the Institute:</label>
+        <input type="text" name="instituteName" th:value="${applicationForm.instituteName}" required />
+    </div>
+    <div>
+        <label>Affiliated by University:</label>
+        <input type="text" name="affiliatedUniversity" th:value="${applicationForm.affiliatedUniversity}" required />
+    </div>
+    <div>
+        <label>Current Year Fee Payable:</label>
+        <input type="number" name="currentYearFee" th:value="${applicationForm.currentYearFee}" required />
+    </div>
+    <div>
+        <label>Permanent Address:</label>
+        <input type="text" name="postalAddress" th:value="${applicationForm.postalAddress}" required />
+    </div>
+    <div>
+        <label>City:</label>
+        <input type="text" name="city" th:value="${applicationForm.city}" required />
+    </div>
+    <div>
+        <label>Pin:</label>
+        <input type="text" name="pin" th:value="${applicationForm.pin}" required />
+    </div>
+    <div>
+        <label>State:</label>
+        <input type="text" name="state" th:value="${applicationForm.state}" required />
+    </div>
+    <div>
+        <label>WhatsApp Number:</label>
+        <input type="text" name="whatsappNumber" th:value="${applicationForm.whatsappNumber}" required />
+    </div>
+    <div>
+        <label>Alternate Mobile Number:</label>
+        <input type="text" name="alternateMobile" th:value="${applicationForm.alternateMobile}" required />
+    </div>
+    <div>
+        <label>Email ID:</label>
+        <input type="email" name="email" th:value="${applicationForm.email}" required />
+    </div>
+    <div>
+        <label>Bank Account Number:</label>
+        <input type="text" name="bankAccountNumber" th:value="${applicationForm.bankAccountNumber}" required />
+    </div>
+    <div>
+        <label>Pan Card:</label>
+        <input type="file" name="panCardFile" required />
+    </div>
+    <div>
+        <label>Income Proof:</label>
+        <input type="file" name="incomeProofFile" required />
+    </div>
+    <div>
+        <label>10th Certificate:</label>
+        <input type="file" name="tenthCertificateFile" required />
+    </div>
+    <div>
+        <label>12th Certificate:</label>
+        <input type="file" name="twelfthCertificateFile" required />
+    </div>
+    <div>
+        <label>Bank Statements:</label>
+        <input type="file" name="bankStatementsFile" required />
+    </div>
+    <div>
+        <label>Current Year Fee Receipt:</label>
+        <input type="file" name="currentYearFeeReceiptFile" required />
+    </div>
+    <div>
+        <label>Fee Structure:</label>
+        <input type="file" name="feeStructureFile" required />
+    </div>
+    <div>
+        <label>Last Year Fee Receipts:</label>
+        <input type="file" name="lastYearFeeReceiptsFile" required />
+    </div>
+    <div>
+        <label>Essay:</label>
+        <input type="file" name="essayFile" required />
+    </div>
+    <div>
+        <label>Aadhaar Card:</label>
+        <input type="file" name="aadhaarCardFile" required />
+    </div>
+    <div>
+        <label>Admission Confirmation Letter:</label>
+        <input type="file" name="admissionConfirmationLetterFile" required />
+    </div>
+    <div>
+        <label>Is this a Renewal Application?</label>
+        <input type="checkbox" name="isRenewal" th:checked="${applicationForm.isRenewal}" />
+    </div>
+
+    <!-- Renewal Specific Fields -->
+    <div th:if="${applicationForm.isRenewal}">
+        <h2>Renewal Specific Information</h2>
+        <div>
+            <label>Last Year Course Name:</label>
+            <input type="text" name="lastYearCourseName" th:value="${applicationForm.lastYearCourseName}" />
+        </div>
+        <div>
+            <label>Last Year Institute:</label>
+            <input type="text" name="lastYearInstitute" th:value="${applicationForm.lastYearInstitute}" />
+        </div>
+        <div>
+            <label>Last Year Affiliated University:</label>
+            <input type="text" name="lastYearAffiliatedUniversity" th:value="${applicationForm.lastYearAffiliatedUniversity}" />
+        </div>
+        <div>
+            <label>Last Year Fee Paid:</label>
+            <input type="number" name="lastYearFeePaid" th:value="${applicationForm.lastYearFeePaid}" />
+        </div>
+        <div>
+            <label>Last Year Scholarship Amount:</label>
+            <input type="number" name="lastYearScholarshipAmount" th:value="${applicationForm.lastYearScholarshipAmount}" />
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>
