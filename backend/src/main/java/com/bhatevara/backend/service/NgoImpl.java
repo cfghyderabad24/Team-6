@@ -20,6 +20,7 @@ public class NgoImpl implements NgoService{
 
     @Override
     public Ngo updateNgo(Ngo ngo) {
+
         return null;
     }
 

@@ -5,6 +5,8 @@ import com.bhatevara.backend.repository.ApplicationFormRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ApplicationFormServiceimple implements ApplicationFormService{
 
@@ -19,4 +21,10 @@ public class ApplicationFormServiceimple implements ApplicationFormService{
 
           return applicationFormRepo.save(r);
     }
+
+    public Optional<ApplicationForm> getFormByID(String aadhar_id){
+        return applicationFormRepo.findById(aadhar_id);
+    }
+
+
 }

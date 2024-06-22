@@ -38,26 +38,7 @@ public class AdminController {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
-<<<<<<<<< Temporary merge branch 1
-    // @Autowired
-    // UserService userService;
-    // @GetMapping("/users")
-    // public ResponseEntity<List<User>> getAllUsers() {
-    // try {
-    // List<User> users = userService.finadAll();
-    //
-    // if (users.isEmpty()) {
-    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    // }
-    //
-    // return new ResponseEntity<>(users, HttpStatus.OK);
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    // }
-    // }
-=========
-    
-    
->>>>>>>>> Temporary merge branch 2
+
+
+
 }
