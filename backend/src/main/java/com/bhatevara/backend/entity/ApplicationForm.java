@@ -30,15 +30,15 @@ public class ApplicationForm {
 
     private Long pngo_id;
 
-    private boolean pngo_status;
-    private String pngo_remark;
+    private boolean pngo_status=false;
+    private String pngo_remark="";
 
-    private boolean volunteer_status;
+    private boolean volunteer_status=false;
 
-    private String volunteer_remark;
+    private String volunteer_remark="";
 
-    private boolean board_status;
-    private String board_remark;
+    private boolean board_status=false;
+    private String board_remark="";
 
 
 }
