@@ -38,6 +38,16 @@ public class AdminController {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
+    @PostMapping("/addNgo")
+    public ResponseEntity<Ngo> addNgo(@RequestBody Ngo ngo) {
+        return ResponseEntity.ok(ngoService.addNgo(ngo));
+    }
+
+    @GetMapping("/getNgo")
+    public ResponseEntity<List<Ngo>> getNgo() {
+        return ResponseEntity.ok(ngoService.getAllNgos());
+    }
+
 
     // @Autowired
     // UserService userService;
