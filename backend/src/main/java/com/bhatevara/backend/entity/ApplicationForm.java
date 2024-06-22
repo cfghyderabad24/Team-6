@@ -20,10 +20,10 @@ public class ApplicationForm {
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
-    private byte[] tenth_cert;
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
     private byte[] twelveth_cert;
+
+    private double twelveth_score;
+
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] fee_structure;
