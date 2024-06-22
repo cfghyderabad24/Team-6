@@ -1,8 +1,11 @@
 package com.bhatevara.backend.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bhatevara.backend.entity.Ngo;
+import com.bhatevara.backend.entity.User;
+import com.bhatevara.backend.service.NgoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class AdminController {
     public List<Ngo> getAllNgos() {
         return ngoService.getAllNgos();
     }
+
 
 //    @Autowired
 //    UserService userService;
