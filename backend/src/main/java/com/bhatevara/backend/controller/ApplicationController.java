@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -97,7 +98,7 @@ public class ApplicationController {
     }
 
 
-    @GetMapping("/applications/{id}/document/{type}")
+    @GetMapping("/getPdf/{id}/document/{type}")
     public ResponseEntity<byte[]> viewDocument(@PathVariable Long id, @PathVariable String type) {
         Optional<ApplicationForm> optionalApplicationForm = applicationFormService.getApplicationFormById(id);
         if (optionalApplicationForm.isPresent()) {
@@ -164,4 +165,10 @@ public class ApplicationController {
         return ResponseEntity.notFound().build();
     }
 
+
+    @PostMapping("/approve/{id}")
+    public String approveApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
+        applicationFormService.updatePngoStatus(id, true, remark);
+        return "redirect:/admin/applications/pending";
+    }
 }

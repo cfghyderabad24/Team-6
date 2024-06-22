@@ -3,13 +3,15 @@ package com.bhatevara.backend.controller;
 import com.bhatevara.backend.entity.ApplicationForm;
 import com.bhatevara.backend.service.ApplicationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/volunteer")
 public class VolunteerController {
 
     @Autowired
@@ -17,9 +19,10 @@ public class VolunteerController {
 
 
     @GetMapping("/applications/volunteer")
-    public List<ApplicationForm> getApplicationsReadyForVolunteer() {
+    public ResponseEntity<List<ApplicationForm>> getApplicationsReadyForVolunteer() {
         List<ApplicationForm> readyApplications = applicationFormService.getApplicationsReadyForVolunteer();
-        return readyApplications;
+        System.out.println(readyApplications);
+        return ResponseEntity.ok(readyApplications);
     }
 
     @PostMapping("/applications/{id}/verify")
@@ -28,6 +31,11 @@ public class VolunteerController {
         return "Success Verification";
     }
 
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<ApplicationForm> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(applicationFormService.getApplicationFormById(id).get());
+    }
 
 
 }

@@ -40,11 +40,7 @@ public class AdminController {
 //        return "pendingApplications";
 //    }
 
-//    @PostMapping("/applications/{id}/approve")
-//    public String approveApplication(@PathVariable Long id, @RequestParam("remark") String remark, Model model) {
-//        applicationFormService.updatePngoStatus(id, true, remark);
-//        return "redirect:/admin/applications/pending";
-//    }
+
 
 //    @PostMapping("/applications/{id}/reject")
 //    public String rejectApplication(@PathVariable Long id, @RequestParam("remark") String remark, Model model) {
