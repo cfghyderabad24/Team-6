@@ -1,8 +1,6 @@
 package com.bhatevara.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -20,8 +18,14 @@ public class ApplicationForm {
     private String email;
     private String phone;
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] tenth_cert;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] twelveth_cert;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] fee_structure;
 
     private Long pngo_id;

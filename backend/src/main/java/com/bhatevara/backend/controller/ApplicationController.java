@@ -1,7 +1,8 @@
 package com.bhatevara.backend.controller;
 
 import com.bhatevara.backend.entity.ApplicationForm;
-import com.bhatevara.backend.repository.applicationformrepo;
+
+import com.bhatevara.backend.service.ApplicationFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApplicationController {
 
 
+    @Autowired
+    private ApplicationFormService applicationFormService;
 
     @PostMapping("/submitForm")
     public ResponseEntity<ApplicationForm> submitForm(@RequestBody ApplicationForm form) {
-        return ResponseEntity.ok(form);
+        return ResponseEntity.ok(applicationFormService.AddForm(form));
     }
 }

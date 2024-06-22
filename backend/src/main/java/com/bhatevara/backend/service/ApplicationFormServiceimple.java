@@ -15,7 +15,7 @@ public class ApplicationFormServiceimple implements ApplicationFormService{
     }
 
     @Override
-    public void AddForm(ApplicationForm r) {
-          applicationFormRepo.save(r);
+    public ApplicationForm AddForm(ApplicationForm r) {
+          return applicationFormRepo.save(r);
     }
 }
