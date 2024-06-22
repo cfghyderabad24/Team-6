@@ -84,4 +84,11 @@ public class ApplicationForm {
 
 
     private boolean readyForVolunteer;
+
+    private String finalDecision;
+    private String finalDecisionRemark;
+    private double scholarshipAmount;
+    private String chequeNumber;
+    private String chequeDate;
+    private String chequePayee;
 }

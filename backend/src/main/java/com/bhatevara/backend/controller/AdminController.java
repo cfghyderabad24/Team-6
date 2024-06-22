@@ -93,6 +93,37 @@ public class AdminController {
         applicationFormService.updateVolunteerStatus(id, status, remark);
         return "redirect:/admin/applications/volunteer";
     }
+
+
+
+
+
+
+    //final
+    @GetMapping("/applications/final")
+    public String getApplicationsForFinalDecision(Model model) {
+        List<ApplicationForm> finalApplications = applicationFormService.getApplicationsForFinalDecision();
+        model.addAttribute("applications", finalApplications);
+        return "finalDecisionApplications";
+    }
+
+    @PostMapping("/applications/{id}/finalize")
+    public String finalizeApplication(
+            @PathVariable Long id,
+            @RequestParam("decision") String decision,
+            @RequestParam("remark") String remark,
+            @RequestParam("amount") double amount,
+            @RequestParam("chequeNumber") String chequeNumber,
+            @RequestParam("chequeDate") String chequeDate,
+            @RequestParam("chequePayee") String chequePayee,
+            Model model) {
+        applicationFormService.updateFinalDecision(id, decision, remark, amount, chequeNumber, chequeDate, chequePayee);
+        return "redirect:/admin/applications/final";
+    }
+
+
+
+
     @GetMapping("/applications/{id}/document/{type}")
     public ResponseEntity<byte[]> viewDocument(@PathVariable Long id, @PathVariable String type) {
         Optional<ApplicationForm> optionalApplicationForm = applicationFormService.getApplicationFormById(id);

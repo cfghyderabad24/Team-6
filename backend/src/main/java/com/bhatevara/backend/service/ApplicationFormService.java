@@ -52,4 +52,21 @@ public class ApplicationFormService {
             applicationFormRepository.save(applicationForm);
         });
     }
+
+    public List<ApplicationForm> getApplicationsForFinalDecision() {
+        return applicationFormRepository.findByVolunteerStatusTrueAndBoardStatusFalse();
+    }
+
+    public void updateFinalDecision(Long id, String decision, String remark, double amount, String chequeNumber, String chequeDate, String chequePayee) {
+        applicationFormRepository.findById(id).ifPresent(applicationForm -> {
+            applicationForm.setBoardStatus(true);
+            applicationForm.setFinalDecision(decision);
+            applicationForm.setFinalDecisionRemark(remark);
+            applicationForm.setScholarshipAmount(amount);
+            applicationForm.setChequeNumber(chequeNumber);
+            applicationForm.setChequeDate(chequeDate);
+            applicationForm.setChequePayee(chequePayee);
+            applicationFormRepository.save(applicationForm);
+        });
+    }
 }
