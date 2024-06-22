@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Application Form</title>
+</head>
+<body>
+<h1>Application Form</h1>
+<form th:action="@{/admin/applications}" th:object="${applicationForm}" method="post" enctype="multipart/form-data">
+  <label for="formNumber">Form Number:</label>
+  <input type="text" id="formNumber" th:field="*{formNumber}" required><br>
+
+  <label for="studentName">Full Name of the Student:</label>
+  <input type="text" id="studentName" th:field="*{studentName}" required><br>
+
+  <label for="courseName">Course Name:</label>
+  <input type="text" id="courseName" th:field="*{courseName}" required><br>
+
+  <label for="courseDuration">Total Duration (Years):</label>
+  <input type="number" id="courseDuration" th:field="*{courseDuration}" required><br>
+
+  <label for="currentYear">Currently in which year of the course:</label>
+  <input type="number" id="currentYear" th:field="*{currentYear}" required><br>
+
+  <label for="instituteName">Name of the Institute:</label>
+  <input type="text" id="instituteName" th:field="*{instituteName}" required><br>
+
+  <label for="affiliatedUniversity">Affiliated by:</label>
+  <input type="text" id="affiliatedUniversity" th:field="*{affiliatedUniversity}" required><br>
+
+  <label for="currentYearFee">Current year fee payable:</label>
+  <input type="number" id="currentYearFee" th:field="*{currentYearFee}" required><br>
+
+  <label for="fatherName">Father’s Full Name:</label>
+  <input type="text" id="fatherName" th:field="*{fatherName}" required><br>
+
+  <label for="motherName">Mother’s Full Name:</label>
+  <input type="text" id="motherName" th:field="*{motherName}" required><br>
+
+  <label for="postalAddress">Complete Postal Address:</label>
+  <textarea id="postalAddress" th:field="*{postalAddress}" required></textarea><br>
+
+  <label for="city">City:</label>
+  <input type="text" id="city" th:field="*{city}" required><br>
+
+  <label for="pin">PIN:</label>
+  <input type="text" id="pin" th:field="*{pin}" required><br>
+
+  <label for="state">State:</label>
+  <input type="text" id="state" th:field="*{state}" required><br>
+
+  <label for="whatsappNumber">WhatsApp Number:</label>
+  <input type="text" id="whatsappNumber" th:field="*{whatsappNumber}" required><br>
+
+  <label for="alternateMobile">Alternate Mobile Number:</label>
+  <input type="text" id="alternateMobile" th:field="*{alternateMobile}" required><br>
+
+  <label for="email">E-mail ID:</label>
+  <input type="email" id="email" th:field="*{email}" required><br>
+
+  <label for="bankAccountNumber">Bank Account Number:</label>
+  <input type="text" id="bankAccountNumber" th:field="*{bankAccountNumber}" required><br>
+
+  <label for="panCardFile">PAN Card:</label>
+  <input type="file" id="panCardFile" name="panCardFile" required><br>
+
+  <label for="incomeProofFile">Income Proof:</label>
+  <input type="file" id="incomeProofFile" name="incomeProofFile" required><br>
+
+  <label for="tenthCertificateFile">10th Certificate:</label>
+  <input type="file" id="tenthCertificateFile" name="tenthCertificateFile" required><br>
+
+  <label for="twelfthCertificateFile">12th Certificate:</label>
+  <input type="file" id="twelfthCertificateFile" name="twelfthCertificateFile" required><br>
+
+  <label for="bankStatementsFile">Bank Statements:</label>
+  <input type="file" id="bankStatementsFile" name="bankStatementsFile" required><br>
+
+  <label for="currentYearFeeReceiptFile">Current Year Fee Receipt:</label>
+  <input type="file" id="currentYearFeeReceiptFile" name="currentYearFeeReceiptFile" required><br>
+
+  <label for="feeStructureFile">Fee Structure:</label>
+  <input type="file" id="feeStructureFile" name="feeStructureFile" required><br>
+
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>
