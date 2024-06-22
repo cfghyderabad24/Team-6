@@ -1,15 +1,30 @@
-// src/VolunteerPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './VolunteerPage.css';
 import VolunteerCard from './VolunteerCard';
+import { fetchVolunteers } from '../services/VolunteerService';
 
-const VolunteerPage = ({ initialVolunteers }) => {
-  const [volunteers, setVolunteers] = useState(initialVolunteers);
+const VolunteerPage = () => {
+  const [volunteers, setVolunteers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchVolunteers();
+        setVolunteers(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching volunteers:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="volunteer-page">
       <header className="header">
-        <h1>Volunteer</h1>
+        <h1>Volunteers</h1>
         <button className="logout-button">Log out</button>
       </header>
       <div className="card-container">

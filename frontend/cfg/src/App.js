@@ -107,7 +107,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<VolunteerPage initialVolunteers={volunteers} setVolunteers={setVolunteers} />} />
+          <Route path="/" element={<VolunteerPage/>} />
           <Route path="/details/:id" element={<VolunteerDetails volunteers={volunteers} />} />
           <Route path="/update-status/:id" element={<UpdateStatusPage volunteers={volunteers} setVolunteers={setVolunteers} />} />
           <Route path="/founders" element={<FoundersPage initialFounders={founders} setFounders={setFounders} />} />

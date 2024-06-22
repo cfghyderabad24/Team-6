@@ -1,20 +1,48 @@
-// src/VolunteerDetails.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './VolunteerDetails.css';
+import { fetchVolunteerDetails, scheduleInterview } from '../services/VolunteerService';
 
-const VolunteerDetails = ({ volunteers }) => {
+const VolunteerDetails = () => {
   const { id } = useParams();
-  const volunteer = volunteers.find(v => v.id === id);
-
+  const [volunteer, setVolunteer] = useState(null);
   const [interviewScheduled, setInterviewScheduled] = useState(false);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [mode, setMode] = useState('online');
+  const [videoLink, setVideoLink] = useState('');
 
-  const handleScheduleInterview = () => {
-    setInterviewScheduled(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchVolunteerDetails(id);
+        setVolunteer(data);
+      } catch (error) {
+        console.error('Error fetching volunteer details:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const handleScheduleInterview = async () => {
+    const interviewDetails = {
+      date,
+      time,
+      mode,
+      videoLink: mode === 'online' ? videoLink : '',
+    };
+    try {
+      await scheduleInterview(volunteer.email, interviewDetails);
+      setInterviewScheduled(true);
+    } catch (error) {
+      console.error('Error scheduling interview:', error);
+    }
   };
+
+  if (!volunteer) {
+    return <div>Loading...</div>;
+  }
 
   const handlePreviewPDF = () => {
     window.open(volunteer.documentUrl, '_blank');
@@ -64,6 +92,12 @@ const VolunteerDetails = ({ volunteers }) => {
             <option value="offline">Offline</option>
           </select>
         </label>
+        {mode === 'online' && (
+          <label>
+            Video Link:
+            <input type="text" value={videoLink} onChange={(e) => setVideoLink(e.target.value)} />
+          </label>
+        )}
         <button onClick={handleScheduleInterview}>Schedule</button>
       </div>
 
@@ -73,6 +107,7 @@ const VolunteerDetails = ({ volunteers }) => {
           <p>Date: {date}</p>
           <p>Time: {time}</p>
           <p>Mode: {mode}</p>
+          {mode === 'online' && <p>Video Link: {videoLink}</p>}
         </div>
       )}
     </div>
