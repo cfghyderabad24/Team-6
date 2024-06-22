@@ -30,36 +30,41 @@ public class ApplicationController {
 
     @PostMapping("/submitApplication")
     public ResponseEntity<String> saveApplicationForm(
-            @RequestParam("formNumber") String formNumber,
-            @RequestParam("studentName") String studentName,
-            @RequestParam("courseName") String courseName,
-            @RequestParam("courseDuration") int courseDuration,
-            @RequestParam("currentYear") int currentYear,
-            @RequestParam("instituteName") String instituteName,
-            @RequestParam("affiliatedUniversity") String affiliatedUniversity,
-            @RequestParam("currentYearFee") double currentYearFee,
-            @RequestParam("fatherName") String fatherName,
-            @RequestParam("motherName") String motherName,
-            @RequestParam("postalAddress") String postalAddress,
-            @RequestParam("city") String city,
-            @RequestParam("pin") String pin,
-            @RequestParam("state") String state,
-            @RequestParam("whatsappNumber") String whatsappNumber,
-            @RequestParam("alternateMobile") String alternateMobile,
-            @RequestParam("email") String email,
-            @RequestParam("bankAccountNumber") String bankAccountNumber,
-            @RequestParam("panCardFile") MultipartFile panCardFile,
-            @RequestParam("incomeProofFile") MultipartFile incomeProofFile,
-            @RequestParam("tenthCertificateFile") MultipartFile tenthCertificateFile,
-            @RequestParam("twelfthCertificateFile") MultipartFile twelfthCertificateFile,
-            @RequestParam("bankStatementsFile") MultipartFile bankStatementsFile,
-            @RequestParam("currentYearFeeReceiptFile") MultipartFile currentYearFeeReceiptFile,
-            @RequestParam("feeStructureFile") MultipartFile feeStructureFile,
-            @RequestParam("lastYearFeeReceiptsFile") MultipartFile lastYearFeeReceiptsFile,
-            @RequestParam("essayFile") MultipartFile essayFile,
-            @RequestParam("aadhaarCardFile") MultipartFile aadhaarCardFile,
-            @RequestParam("admissionConfirmationLetterFile") MultipartFile admissionConfirmationLetterFile,
-            @RequestParam("isRenewal") boolean isRenewal) throws IOException {
+            @RequestParam(value = "formNumber", required = false) String formNumber,
+            @RequestParam(value = "studentName", required = false) String studentName,
+            @RequestParam(value = "courseName", required = false) String courseName,
+            @RequestParam(value = "courseDuration", required = false) Integer courseDuration,
+            @RequestParam(value = "currentYear", required = false) Integer currentYear,
+            @RequestParam(value = "instituteName", required = false) String instituteName,
+            @RequestParam(value = "affiliatedUniversity", required = false) String affiliatedUniversity,
+            @RequestParam(value = "currentYearFee", required = false) Double currentYearFee,
+            @RequestParam(value = "fatherName", required = false) String fatherName,
+            @RequestParam(value = "motherName", required = false) String motherName,
+            @RequestParam(value = "postalAddress", required = false) String postalAddress,
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "pin", required = false) String pin,
+            @RequestParam(value = "state", required = false) String state,
+            @RequestParam(value = "whatsappNumber", required = false) String whatsappNumber,
+            @RequestParam(value = "alternateMobile", required = false) String alternateMobile,
+            @RequestParam(value = "email", required = false) String email,
+            @RequestParam(value = "bankAccountNumber", required = false) String bankAccountNumber,
+            @RequestParam(value = "panCardFile", required = false) MultipartFile panCardFile,
+            @RequestParam(value = "incomeProofFile", required = false) MultipartFile incomeProofFile,
+            @RequestParam(value = "tenthCertificateFile", required = false) MultipartFile tenthCertificateFile,
+            @RequestParam(value = "twelfthCertificateFile", required = false) MultipartFile twelfthCertificateFile,
+            @RequestParam(value = "bankStatementsFile", required = false) MultipartFile bankStatementsFile,
+            @RequestParam(value = "currentYearFeeReceiptFile", required = false) MultipartFile currentYearFeeReceiptFile,
+            @RequestParam(value = "feeStructureFile", required = false) MultipartFile feeStructureFile,
+            @RequestParam(value = "lastYearFeeReceiptsFile", required = false) MultipartFile lastYearFeeReceiptsFile,
+            @RequestParam(value = "essayFile", required = false) MultipartFile essayFile,
+            @RequestParam(value = "aadhaarCardFile", required = false) MultipartFile aadhaarCardFile,
+            @RequestParam(value = "admissionConfirmationLetterFile", required = false) MultipartFile admissionConfirmationLetterFile,
+            @RequestParam(value = "isRenewal", required = false) Boolean isRenewal,
+            @RequestParam(value = "lastYearCourseName", required = false) String lastYearCourseName,
+            @RequestParam(value = "lastYearInstitute", required = false) String lastYearInstitute,
+            @RequestParam(value = "lastYearAffiliatedUniversity", required = false) String lastYearAffiliatedUniversity,
+            @RequestParam(value = "lastYearFeePaid", required = false) Double lastYearFeePaid,
+            @RequestParam(value = "lastYearScholarshipAmount", required = false) Double lastYearScholarshipAmount) throws IOException {
 
         ApplicationForm applicationForm = new ApplicationForm();
         applicationForm.setFormNumber(formNumber);
@@ -80,20 +85,26 @@ public class ApplicationController {
         applicationForm.setAlternateMobile(alternateMobile);
         applicationForm.setEmail(email);
         applicationForm.setBankAccountNumber(bankAccountNumber);
-        applicationForm.setPanCard(panCardFile.getBytes());
-        applicationForm.setIncomeProof(incomeProofFile.getBytes());
-        applicationForm.setTenthCertificate(tenthCertificateFile.getBytes());
-        applicationForm.setTwelfthCertificate(twelfthCertificateFile.getBytes());
-        applicationForm.setBankStatements(bankStatementsFile.getBytes());
-        applicationForm.setCurrentYearFeeReceipt(currentYearFeeReceiptFile.getBytes());
-        applicationForm.setFeeStructure(feeStructureFile.getBytes());
-        applicationForm.setLastYearFeeReceipts(lastYearFeeReceiptsFile.getBytes());
-        applicationForm.setEssay(essayFile.getBytes());
-        applicationForm.setAadhaarCard(aadhaarCardFile.getBytes());
-        applicationForm.setAdmissionConfirmationLetter(admissionConfirmationLetterFile.getBytes());
-        applicationForm.setRenewal(isRenewal);
+        applicationForm.setPanCard(panCardFile != null ? panCardFile.getBytes() : null);
+        applicationForm.setIncomeProof(incomeProofFile != null ? incomeProofFile.getBytes() : null);
+        applicationForm.setTenthCertificate(tenthCertificateFile != null ? tenthCertificateFile.getBytes() : null);
+        applicationForm.setTwelfthCertificate(twelfthCertificateFile != null ? twelfthCertificateFile.getBytes() : null);
+        applicationForm.setBankStatements(bankStatementsFile != null ? bankStatementsFile.getBytes() : null);
+        applicationForm.setCurrentYearFeeReceipt(currentYearFeeReceiptFile != null ? currentYearFeeReceiptFile.getBytes() : null);
+        applicationForm.setFeeStructure(feeStructureFile != null ? feeStructureFile.getBytes() : null);
+        applicationForm.setLastYearFeeReceipts(lastYearFeeReceiptsFile != null ? lastYearFeeReceiptsFile.getBytes() : null);
+        applicationForm.setEssay(essayFile != null ? essayFile.getBytes() : null);
+        applicationForm.setAadhaarCard(aadhaarCardFile != null ? aadhaarCardFile.getBytes() : null);
+        applicationForm.setAdmissionConfirmationLetter(admissionConfirmationLetterFile != null ? admissionConfirmationLetterFile.getBytes() : null);
+        applicationForm.setRenewal(isRenewal != null ? isRenewal : false);
+        applicationForm.setLastYearCourseName(lastYearCourseName);
+        applicationForm.setLastYearInstitute(lastYearInstitute);
+        applicationForm.setLastYearAffiliatedUniversity(lastYearAffiliatedUniversity);
+        applicationForm.setLastYearFeePaid(lastYearFeePaid);
+        applicationForm.setLastYearScholarshipAmount(lastYearScholarshipAmount);
 
         applicationFormService.saveApplicationForm(applicationForm);
+
         return ResponseEntity.ok("Success");
     }
 
@@ -170,5 +181,11 @@ public class ApplicationController {
     public String approveApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
         applicationFormService.updatePngoStatus(id, true, remark);
         return "redirect:/admin/applications/pending";
+    }
+
+    @GetMapping("/renewal")
+    public ResponseEntity<List<ApplicationForm>> getPendingRenewalApplications() {
+        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
+        return ResponseEntity.ok(pendingRenewalApplications);
     }
 }

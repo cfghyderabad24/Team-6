@@ -2,7 +2,9 @@ package com.bhatevara.backend.controller;
 
 import com.bhatevara.backend.entity.ApplicationForm;
 import com.bhatevara.backend.service.ApplicationFormService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,11 +37,7 @@ public class PartnerController {
     }
 
 
-    @GetMapping("/applications/renewal")
-    public List<ApplicationForm> getPendingRenewalApplications() {
-        List<ApplicationForm> pendingRenewalApplications = applicationFormService.getPendingRenewalApplications();
-        return pendingRenewalApplications;
-    }
+
 
     @PostMapping("/applications/{id}/renewal/approve")
     public String approveRenewalApplication(@PathVariable Long id, @RequestParam("remark") String remark) {
