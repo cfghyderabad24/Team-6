@@ -15,7 +15,7 @@ public class NgoImpl implements NgoService{
 
     @Override
     public Ngo addNgo(Ngo ngo) {
-        return null;
+        return ngorepo.save(ngo);
     }
 
     @Override
