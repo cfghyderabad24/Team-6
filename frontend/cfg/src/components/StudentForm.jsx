@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { submitApplication } from '../services/ApplicationService';
 import './StudentForm.css';
 
 const StudentForm = () => {
@@ -22,6 +22,7 @@ const StudentForm = () => {
     alternateMobile: '',
     email: '',
     bankAccountNumber: '',
+    isRenewal: false,
   });
 
   const [files, setFiles] = useState({
@@ -64,12 +65,8 @@ const StudentForm = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:8080/api/applications', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Form submitted successfully:', response.data);
+      const response = await submitApplication(data);
+      console.log('Form submitted successfully:', response);
     } catch (error) {
       console.error('Error submitting the form:', error);
     }
@@ -82,7 +79,6 @@ const StudentForm = () => {
           <img src="https://via.placeholder.com/150" alt="students" />
           <h1>Student Application Form</h1>
         </div>
-        {/* Add form fields here */}
         <div className="form-group">
           <label>Form Number</label>
           <input type="text" name="formNumber" value={formData.formNumber} onChange={handleChange} />
@@ -198,6 +194,10 @@ const StudentForm = () => {
         <div className="form-group">
           <label>Admission Confirmation Letter</label>
           <input type="file" name="admissionConfirmationLetterFile" onChange={handleFileChange} />
+        </div>
+        <div className="form-group">
+          <label>Renewal</label>
+          <input type="checkbox" name="isRenewal" checked={formData.isRenewal} onChange={(e) => setFormData({...formData, isRenewal: e.target.checked})} />
         </div>
         <div className="form-group">
           <button type="submit">Submit</button>
