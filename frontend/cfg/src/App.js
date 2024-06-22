@@ -20,6 +20,7 @@ import VolunteerRenewal from './components/VolunteerRenewal';
 import PartnerLogin from './components/PartnerLogin';
 import VolunteerLogin from './components/VolunteerLogin';
 import AdminLogin from './components/AdminLogin';
+import Navbar from './components/Navbar';
 
 const initialVolunteers = [
   {
@@ -113,6 +114,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <div className="App">
         <Routes>
           <Route path="/" element={<VolunteerPage/>} />

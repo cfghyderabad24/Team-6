@@ -2,27 +2,28 @@ import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const PartnerLogin = () => {
+const VolunteerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await axios.post('http://localhost:8080/login/volunteer', {
+      const response = await axios.post("http://localhost:8080/login/volunteer", {
         username: email,
-        password: password
+        password: password,
       });
 
-      if (response.data) {
-        sessionStorage.setItem('role', 'partner');
+      if (response.data === "Success") {
+        sessionStorage.setItem("role", "volunteer");
         alert("Login successful");
+        window.location.href = "/volunteerDashboard"; // Redirect to volunteer dashboard
       } else {
         alert("Login failed");
       }
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error("Error logging in:", error);
       alert("Login failed");
     }
   };
@@ -79,4 +80,4 @@ const PartnerLogin = () => {
   );
 };
 
-export default PartnerLogin;
+export default VolunteerLogin;
