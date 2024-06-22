@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Repository
 public interface ngorepo extends JpaRepository<Ngo, Long> {
+    //need no code here tooo.
 }
