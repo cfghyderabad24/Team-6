@@ -1,0 +1,69 @@
+/* src/VolunteerDetails.css */
+.volunteer-details {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .volunteer-details h2 {
+    margin-bottom: 20px;
+  }
+  
+  .volunteer-details p {
+    margin: 5px 0;
+  }
+  
+  .document-preview {
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .document-preview button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .schedule-interview {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .schedule-interview label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .schedule-interview input, .schedule-interview select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .schedule-interview button {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .interview-scheduled {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    text-align: left;
+  }
+  

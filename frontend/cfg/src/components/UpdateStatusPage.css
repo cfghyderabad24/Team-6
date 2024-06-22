@@ -1,0 +1,59 @@
+/* src/NGOUpdateStatus.css */
+.ngo-update-status {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+  }
+  
+  .ngo-update-status h1 {
+    margin-bottom: 20px;
+  }
+  
+  .ngo-update-status h2 {
+    margin-bottom: 20px;
+  }
+  
+  .ngo-update-status form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ngo-update-status label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .ngo-update-status label span {
+    flex: 1;
+  }
+  
+  .ngo-update-status input[type="checkbox"],
+  .ngo-update-status input[type="text"] {
+    margin-right: 10px;
+  }
+  
+  .ngo-update-status textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .ngo-update-status button {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    align-self: flex-start;
+  }
+  
