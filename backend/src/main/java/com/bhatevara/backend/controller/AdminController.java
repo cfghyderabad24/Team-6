@@ -5,6 +5,7 @@ import com.bhatevara.backend.entity.Ngo;
 import com.bhatevara.backend.entity.NgoEmployee;
 import com.bhatevara.backend.entity.User;
 import com.bhatevara.backend.service.NgoEmployeeService;
+//import com.bhatevara.backend.service.NgoService;
 import com.bhatevara.backend.service.NgoService;
 import com.bhatevara.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,32 @@ public class AdminController {
         return ResponseEntity.ok(userService.addUser(user));
     }
 
-    @PostMapping("/addNgo")
-    public ResponseEntity<Ngo> addNgo(@RequestBody Ngo ngo) {
-        return ResponseEntity.ok(ngoService.addNgo(ngo));
-    }
-
-    @GetMapping("/getAllNgos")
-    public ResponseEntity<List<Ngo>> getAllNgos() {
-        return ResponseEntity.ok(ngoService.getAllNgos());
-    }
 
     @PostMapping("/addNgoEmployee")
     public ResponseEntity<NgoEmployee> addNgoEmployee(@RequestBody NgoEmployee ngoEmployee) {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
-
+<<<<<<<<< Temporary merge branch 1
+    // @Autowired
+    // UserService userService;
+    // @GetMapping("/users")
+    // public ResponseEntity<List<User>> getAllUsers() {
+    // try {
+    // List<User> users = userService.finadAll();
+    //
+    // if (users.isEmpty()) {
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
+    //
+    // return new ResponseEntity<>(users, HttpStatus.OK);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    // }
+=========
+    
+    
+>>>>>>>>> Temporary merge branch 2
 }
