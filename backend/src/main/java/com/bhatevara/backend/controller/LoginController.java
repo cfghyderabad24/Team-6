@@ -7,15 +7,17 @@ import com.bhatevara.backend.repository.AlumniRepo;
 import com.bhatevara.backend.service.Alumniservice;
 import com.bhatevara.backend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.Map;
+
+@RestController
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:3000")
 public class LoginController {
 
     @Autowired
@@ -24,66 +26,54 @@ public class LoginController {
     @Autowired
     Alumniservice alumniservice;
 
-    @GetMapping("/alumni")
-    public String showalumniloginpage(){
-        return "alumnologinpage";
-    }
-
-    @PostMapping("/almuni")
-    public String alumniLogin(@RequestParam String username, @RequestParam String password) {
-        Admin admin = loginService.validateAdmin(username, password);
+    @PostMapping("/alumni")
+    public ResponseEntity<Boolean> alumniLogin(@RequestParam String email, @RequestParam String password) {
+        Admin admin = loginService.validateAdmin(email);
         if (admin != null) {
-            return "Success";
+            return ResponseEntity.ok(true);
         } else {
-            return "Failed to Success";
+            return ResponseEntity.ok(false);
         }
-    }
-
-    
-
-    @GetMapping("/admin")
-    public String showAdminLoginPage() {
-        return "adminLogin";
     }
 
     @PostMapping("/admin")
-    public String adminLogin(@RequestParam String username, @RequestParam String password) {
-        Admin admin = loginService.validateAdmin(username, password);
-        if (admin != null) {
-            return "Success";
+    public ResponseEntity<String> adminLogin(@RequestBody Admin admin) {
+
+        Admin temp = loginService.validateAdmin(admin.getUsername());
+        if (temp != null) {
+            if (temp.getPassword().equals(admin.getPassword())) {
+                return ResponseEntity.ok("Success");
+            }
+
         } else {
-            return "Failed to Success";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Failed");
         }
-    }
-
-
-    @GetMapping("/partner")
-    public String showPartnerLoginPage() {
-        return "partnerLogin";
     }
 
     @PostMapping("/partner")
-    public String partnerLogin(@RequestParam String username, @RequestParam String password) {
-        Partner partner = loginService.validatePartner(username, password);
-        if (partner != null) {
-            return "Partner Login Success";
-        } else {
-            return "Partner Login Failed";
-        }
-    }
+    public ResponseEntity<String> partnerLogin(@RequestBody Partner partner) {
+        Partner temp = loginService.validatePartner(partner.getEmail());
+        if (temp != null) {
+            if(partner.getPassword().equals(temp.getPassword())) {
+                return ResponseEntity.ok("Success");
+            }
 
-    @GetMapping("/volunteer")
-    public String showVolunteerLoginPage() {
-        return "volunteerLogin";
+        } else {
+            return ResponseEntity.ok("Failed");
+        }
     }
 
     @PostMapping("/volunteer")
-    public String volunteerLogin(@RequestParam String username, @RequestParam String password) {
-        Volunteer volunteer = loginService.validateVolunteer(username, password);
-        if (volunteer != null) {
-            return "Volunteer Login Success";
-        } else {
-            return "Volunteer fail in login";
+    public ResponseEntity<String> volunteerLogin(@RequestBody Volunteer volunteer) {
+        Volunteer temp = loginService.validateVolunteer(volunteer.getEmail());
+        if (temp != null) {
+            if (temp.getPassword().equals(volunteer.getPassword())) {
+                return ResponseEntity.ok("Success");
+            }
         }
+
+
+            return ResponseEntity.ok("Failed");
+
     }
 }

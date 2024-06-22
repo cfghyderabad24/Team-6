@@ -33,4 +33,8 @@ public class VolunteerService {
         volunteerrepo.deleteById(id);
     }
 
+    public Volunteer finByEmail(String email) {
+        return volunteerrepo.findByemail(email);
+    }
+
 }

@@ -23,27 +23,23 @@ public class LoginService {
     @Autowired
     private Volunteerrepo volunteerRepository;
 
-    public Admin validateAdmin(String username, String password) {
+    public Admin validateAdmin(String username) {
         Admin admin = adminRepository.findByUsername(username);
-        if (admin != null && admin.getPassword().equals(password)) {
+
             return admin;
-        }
-        return null;
+
     }
 
-    public Partner validatePartner(String username, String password) {
+    public Partner validatePartner(String username) {
         Partner partner = partnerRepository.findByemail(username);
-        if (partner != null && partner.getPassword().equals(password)) {
+
             return partner;
-        }
-        return null;
+
     }
 
-    public Volunteer validateVolunteer(String email, String password) {
+    public Volunteer validateVolunteer(String email) {
         Volunteer volunteer = volunteerRepository.findByemail(email);
-        if (volunteer != null && volunteer.getPassword().equals(password)) {
-            return volunteer;
-        }
-        return null;
+
+        return volunteer;
     }
 }
