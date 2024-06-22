@@ -38,7 +38,33 @@ public class AdminController {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
+    @PostMapping("/addNgo")
+    public ResponseEntity<Ngo> addNgo(@RequestBody Ngo ngo) {
+        return ResponseEntity.ok(ngoService.addNgo(ngo));
+    }
+
+    @GetMapping("/getNgo")
+    public ResponseEntity<List<Ngo>> getNgo() {
+        return ResponseEntity.ok(ngoService.getAllNgos());
+    }
 
 
+    // @Autowired
+    // UserService userService;
+    // @GetMapping("/users")
+    // public ResponseEntity<List<User>> getAllUsers() {
+    // try {
+    // List<User> users = userService.finadAll();
+    //
+    // if (users.isEmpty()) {
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
+    //
+    // return new ResponseEntity<>(users, HttpStatus.OK);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    // }
 
 }
