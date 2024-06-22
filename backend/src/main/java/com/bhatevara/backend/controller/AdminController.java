@@ -46,7 +46,5 @@ public class AdminController {
     public ResponseEntity<NgoEmployee> addNgoEmployee(@RequestBody NgoEmployee ngoEmployee) {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
-
-
-
+    
 }
