@@ -1,75 +1,106 @@
-// src/FounderUpdateStatus.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './FounderUpdateStatus.css';
 
-const FounderUpdateStatus = ({ founders, setFounders }) => {
+const FounderUpdateStatus = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const founder = founders.find(f => f.id === id);
-
-  const [status, setStatus] = useState(founder.status);
-  const [comments, setComments] = useState(founder.comments || '');
-  const [payeeName, setPayeeName] = useState('');
-  const [chequeNo, setChequeNo] = useState('');
-  const [date, setDate] = useState('');
+  const [founder, setFounder] = useState(null);
+  const [decision, setDecision] = useState('');
+  const [remark, setRemark] = useState('');
   const [amount, setAmount] = useState('');
+  const [chequeNumber, setChequeNumber] = useState('');
+  const [chequeDate, setChequeDate] = useState('');
+  const [chequePayee, setChequePayee] = useState('');
 
-  const handleSubmit = () => {
-    const updatedFounders = founders.filter(f => f.id !== id);
-    setFounders(updatedFounders);
-    navigate('/founders');
+  useEffect(() => {
+    const fetchFounderDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/admin/getById/${id}`);
+        setFounder(response.data);
+        setDecision(response.data.decision || '');
+        setRemark(response.data.remark || '');
+      } catch (error) {
+        console.error('Error fetching founder details:', error);
+      }
+    };
+
+    fetchFounderDetails();
+  }, [id]);
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post(`http://localhost:8080/api/admin/applications/${id}/finalize`, null, {
+        params: {
+          decision,
+          remark,
+          amount,
+          chequeNumber,
+          chequeDate,
+          chequePayee
+        }
+      });
+
+      navigate('/founders');
+    } catch (error) {
+      console.error('Error finalizing application:', error);
+    }
   };
+
+  if (!founder) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="founder-update-status">
-      <h1>Update Founder Status</h1>
+      <h1>Finalize Founder Application</h1>
       <h2>{founder.name}'s Status</h2>
       <label>
-        Status:
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+        Decision:
+        <select value={decision} onChange={(e) => setDecision(e.target.value)}>
           <option value="Accepted">Accepted</option>
           <option value="Rejected">Rejected</option>
         </select>
       </label>
       <label>
-        Comments:
+        Remark:
         <textarea
-          value={comments}
-          onChange={(e) => setComments(e.target.value)}
+          value={remark}
+          onChange={(e) => setRemark(e.target.value)}
         />
       </label>
       <h3>Cheque Details</h3>
-      <label>
-        Payee Name:
-        <input
-          type="text"
-          value={payeeName}
-          onChange={(e) => setPayeeName(e.target.value)}
-        />
-      </label>
-      <label>
-        Cheque No:
-        <input
-          type="text"
-          value={chequeNo}
-          onChange={(e) => setChequeNo(e.target.value)}
-        />
-      </label>
-      <label>
-        Date:
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </label>
       <label>
         Amount:
         <input
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+        />
+      </label>
+      <label>
+        Cheque Number:
+        <input
+          type="text"
+          value={chequeNumber}
+          onChange={(e) => setChequeNumber(e.target.value)}
+        />
+      </label>
+      <label>
+        Cheque Date:
+        <input
+          type="date"
+          value={chequeDate}
+          onChange={(e) => setChequeDate(e.target.value)}
+        />
+      </label>
+      <label>
+        Cheque Payee:
+        <input
+          type="text"
+          value={chequePayee}
+          onChange={(e) => setChequePayee(e.target.value)}
         />
       </label>
       <button onClick={handleSubmit}>Submit</button>
