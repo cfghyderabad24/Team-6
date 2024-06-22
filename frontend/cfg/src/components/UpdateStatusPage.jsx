@@ -8,8 +8,6 @@ const UpdateStatusPage = ({ volunteers, setVolunteers }) => {
   const navigate = useNavigate();
   const [volunteer, setVolunteer] = useState(null);
 
-  const [documentVerified, setDocumentVerified] = useState(false);
-  const [interviewCompleted, setInterviewCompleted] = useState(false);
   const [comments, setComments] = useState('');
   const [status, setStatus] = useState('pending');
 
@@ -27,17 +25,12 @@ const UpdateStatusPage = ({ volunteers, setVolunteers }) => {
   }, [id]);
 
   const handleSubmit = async () => {
-    const statusUpdate = {
-      documentVerified,
-      interviewCompleted,
-      comments,
-      status,
-    };
+    const finalStatus = status === 'accepted';
 
     try {
-      await updateVolunteerStatus(id, statusUpdate);
+      await updateVolunteerStatus(id, comments, finalStatus);
       const updatedVolunteers = volunteers.map(v =>
-        v.id === id ? { ...v, ...statusUpdate } : v
+        v.id === id ? { ...v, comments, status } : v
       );
       setVolunteers(updatedVolunteers);
       navigate('/');
@@ -50,31 +43,10 @@ const UpdateStatusPage = ({ volunteers, setVolunteers }) => {
     return <div>Loading...</div>;
   }
 
-  const handlePreviewPDF = (file) => {
-    const url = URL.createObjectURL(new Blob([file], { type: 'application/pdf' }));
-    window.open(url, '_blank');
-  };
-
   return (
     <div className="update-status-page">
       <h1>Volunteer Checks</h1>
       <h2>{volunteer.studentName}'s Status</h2>
-      <label>
-        <input
-          type="checkbox"
-          checked={documentVerified}
-          onChange={(e) => setDocumentVerified(e.target.checked)}
-        />
-        Document Verified
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={interviewCompleted}
-          onChange={(e) => setInterviewCompleted(e.target.checked)}
-        />
-        Interview Completed
-      </label>
       <label>
         Comments:
         <textarea
@@ -93,9 +65,9 @@ const UpdateStatusPage = ({ volunteers, setVolunteers }) => {
       <div className="documents-section">
         <h3>Documents</h3>
         <p><strong>Essay:</strong></p>
-        <button onClick={() => handlePreviewPDF(volunteer.essay)}>Preview Essay</button>
+        <a href={`http://localhost:8080/api/applications/${id}/document/essay`} target="_blank" rel="noopener noreferrer">Preview Essay</a>
         <p><strong>Bank Records:</strong></p>
-        <button onClick={() => handlePreviewPDF(volunteer.bankRecords)}>Preview Bank Records</button>
+        <a href={`http://localhost:8080/api/applications/${id}/document/bankRecords`} target="_blank" rel="noopener noreferrer">Preview Bank Records</a>
       </div>
       <button onClick={handleSubmit}>Submit</button>
     </div>
