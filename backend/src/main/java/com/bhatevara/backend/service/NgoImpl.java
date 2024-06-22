@@ -20,16 +20,44 @@ public class NgoImpl implements NgoService{
 
     @Override
     public Ngo updateNgo(Ngo ngo) {
-        return null;
+        Ngo n1 = ngorepo.findbyEmail(ngo.getEmail());
+        if (n1 != null) {
+            n1.setAddress(ngo.getAddress());
+            n1.setCity(ngo.getCity());
+            n1.setPhone(ngo.getPhone());
+            return ngorepo.save(n1);
+        } else {
+            // Handle the case
+            return null;
+        }
     }
 
     @Override
-    public Ngo getNgo(String ngoId) {
-        return null;
+    public Ngo getNgo(Ngo ngoname) {
+        Ngo n1 = ngorepo.findbyName(ngoname.getName());
+        if (n1 != null) {
+           return n1;
+        } else {
+            // Handle the case
+            return null;
+        }
     }
 
     @Override
     public List<Ngo> getAllNgos() {
-        return List.of();
+        return ngorepo.findAll();
     }
+
+    @Override
+    public String deletebyname(Ngo ngoname) {
+        Ngo n1 = ngorepo.findbyName(ngoname.getName());
+        if (n1 != null) {
+            ngorepo.delete(n1);
+            return "success";
+        } else {
+            // Handle the case
+            return null;
+        }
+    }
+
 }

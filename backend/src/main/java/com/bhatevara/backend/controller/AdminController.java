@@ -1,6 +1,5 @@
 package com.bhatevara.backend.controller;
 
-
 import com.bhatevara.backend.entity.Ngo;
 import com.bhatevara.backend.entity.NgoEmployee;
 import com.bhatevara.backend.entity.User;
@@ -8,13 +7,15 @@ import com.bhatevara.backend.service.NgoEmployeeService;
 import com.bhatevara.backend.service.NgoService;
 import com.bhatevara.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/apis/admin")
 public class AdminController {
 
     @Autowired
@@ -26,7 +27,6 @@ public class AdminController {
     @Autowired
     private NgoEmployeeService ngoEmployeeService;
 
-
     @PostMapping("/addVolunteer")
     public ResponseEntity<User> addVolunteer(@RequestBody User user) {
         return ResponseEntity.ok(userService.addUser(user));
@@ -34,7 +34,7 @@ public class AdminController {
 
     @PostMapping("/addNgo")
     public ResponseEntity<Ngo> addNgo(@RequestBody Ngo ngo) {
-       return ResponseEntity.ok(ngoService.addNgo(ngo));
+        return ResponseEntity.ok(ngoService.addNgo(ngo));
     }
 
     @GetMapping("/getAllNgos")
@@ -47,6 +47,21 @@ public class AdminController {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
 
-
-
+    // @Autowired
+    // UserService userService;
+    // @GetMapping("/users")
+    // public ResponseEntity<List<User>> getAllUsers() {
+    // try {
+    // List<User> users = userService.finadAll();
+    //
+    // if (users.isEmpty()) {
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
+    //
+    // return new ResponseEntity<>(users, HttpStatus.OK);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    // }
 }
