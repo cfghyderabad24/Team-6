@@ -1,6 +1,7 @@
 package com.bhatevara.backend.controller;
 
 
+
 import com.bhatevara.backend.entity.Ngo;
 import com.bhatevara.backend.entity.NgoEmployee;
 import com.bhatevara.backend.entity.User;
@@ -46,5 +47,7 @@ public class AdminController {
     public ResponseEntity<NgoEmployee> addNgoEmployee(@RequestBody NgoEmployee ngoEmployee) {
         return ResponseEntity.ok(ngoEmployeeService.addNgoEmployee(ngoEmployee));
     }
+
+    
     
 }
