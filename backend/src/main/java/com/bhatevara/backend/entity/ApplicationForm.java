@@ -81,4 +81,7 @@ public class ApplicationForm {
     private String volunteerRemark;
     private boolean boardStatus;
     private String boardRemark;
+
+
+    private boolean readyForVolunteer;
 }

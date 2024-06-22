@@ -40,4 +40,16 @@ public class ApplicationFormService {
             applicationFormRepository.save(applicationForm);
         });
     }
+
+    public List<ApplicationForm> getApplicationsReadyForVolunteer() {
+        return applicationFormRepository.findByPngoStatusTrueAndVolunteerStatusFalse();
+    }
+
+    public void updateVolunteerStatus(Long id, boolean status, String remark) {
+        applicationFormRepository.findById(id).ifPresent(applicationForm -> {
+            applicationForm.setVolunteerStatus(status);
+            applicationForm.setVolunteerRemark(remark);
+            applicationFormRepository.save(applicationForm);
+        });
+    }
 }

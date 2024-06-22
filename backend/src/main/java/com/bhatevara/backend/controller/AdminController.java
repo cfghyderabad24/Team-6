@@ -79,6 +79,20 @@ public class AdminController {
         applicationFormService.updatePngoStatus(id, false, remark);
         return "redirect:/admin/applications/pending";
     }
+
+
+    @GetMapping("/applications/volunteer")
+    public String getApplicationsReadyForVolunteer(Model model) {
+        List<ApplicationForm> readyApplications = applicationFormService.getApplicationsReadyForVolunteer();
+        model.addAttribute("applications", readyApplications);
+        return "volunteerPendingApplications";
+    }
+
+    @PostMapping("/applications/{id}/verify")
+    public String verifyApplication(@PathVariable Long id, @RequestParam("remark") String remark, @RequestParam("status") boolean status, Model model) {
+        applicationFormService.updateVolunteerStatus(id, status, remark);
+        return "redirect:/admin/applications/volunteer";
+    }
     @GetMapping("/applications/{id}/document/{type}")
     public ResponseEntity<byte[]> viewDocument(@PathVariable Long id, @PathVariable String type) {
         Optional<ApplicationForm> optionalApplicationForm = applicationFormService.getApplicationFormById(id);

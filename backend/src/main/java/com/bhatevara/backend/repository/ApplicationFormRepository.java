@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface ApplicationFormRepository extends JpaRepository<ApplicationForm, Long> {
     List<ApplicationForm> findByPngoStatusFalse();
+    List<ApplicationForm> findByPngoStatusTrueAndVolunteerStatusFalse();
 }
 
