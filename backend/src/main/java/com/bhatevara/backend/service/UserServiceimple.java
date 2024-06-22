@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.lang.module.ResolutionException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,16 +24,22 @@ public class UserServiceimple implements UserService {
 
     @Override
     public User findById(Long id) {
-       return null;
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not exist "+id));
+        return ResponseEntity.ok(user).getBody();
     }
 
     @Override
     public User findByEmail(String email) {
-        return null;
+        User user = (User) userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not exist "+email));
+        return ResponseEntity.ok(user).getBody();
     }
 
     @Override
     public List<User> finadAll() {
-        return null;
+        try {
+            return userRepository.findAll();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 }
