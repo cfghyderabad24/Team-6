@@ -1,0 +1,76 @@
+.volunteer-container {
+    padding: 20px;
+  }
+  
+  .volunteer-container h1 {
+    text-align: center;
+  }
+  
+  .add-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 20px;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  /* .add-button:hover {
+    color: #28a745;
+  } */
+  
+  .volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .volunteer-card {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .volunteer-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .volunteer-card p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .card-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+  }
+  
+  .card-actions button:hover {
+    color: #007bff;
+  }
+
+.add-button{
+    background-color: black;
+}

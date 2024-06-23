@@ -1,20 +1,31 @@
-import React from 'react';
-import Charts from './components/Charts';
-import Course from './components/Course';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import Volunteer from './components/Volunteer';
+import Student from './components/Student'; // Import the new Student component
 import './App.css';
+import Partner from './components/Partner';
 
 function App() {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  }
+
   return (
-    <div className="App">
-      <div className="content-container">
-        <div className="left-section">
-          <Charts />
-        </div>
-        <div className="right-section">
-          <Course />
+    <Router>
+      <div className="app-container">
+        <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} className="sidebar"/>
+        <div className="main-content">
+          <Routes>
+          <Route path="/partner-ngo" element={<Partner />} />
+            <Route path="/volunteer" element={<Volunteer />} />
+            <Route path="/students" element={<Student />} /> 
+          </Routes>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
