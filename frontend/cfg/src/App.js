@@ -24,6 +24,16 @@ import PartnerLogin from './components/PartnerLogin';
 import VolunteerLogin from './components/VolunteerLogin';
 import AdminLogin from './components/AdminLogin';
 import Navbar from './components/Navbar';
+import Student from './components/Student';
+import Course from './components/Course';
+import InputPartner from './components/InputPartner';
+import Charts from './components/Charts';
+import Partner from './components/Partner';
+import Volunteer from './components/Volunteer';
+
+
+
+import Sidebar from './components/Sidebar';
 
 const initialVolunteers = [
   {
@@ -112,6 +122,11 @@ const initialStudents = [
 
 
 function App() {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  }
   const [volunteers, setVolunteers] = useState(initialVolunteers);
   const [founders, setFounders] = useState(initialFounders);
   const [students, setStudents] = useState(initialStudents);
@@ -119,7 +134,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="App">
         <Routes>
           <Route path="/" element={<VolunteerPage/>} />
@@ -141,6 +156,19 @@ function App() {
           <Route path='/partnerlogin' element={<PartnerLogin/>}/>
           <Route path='/volunteerLogin' element={<VolunteerLogin/>}/> 
           <Route path='/adminLogin' element={<AdminLogin/>}/>
+
+          
+          <Route path="/partner-ngo" element={<Partner />} />
+            <Route path="/volunteer" element={<Volunteer />} />
+            <Route path="/students" element={<Student />} /> 
+          
+        
+          
+          <Route path='/courseAnalysis' element={<Course/>}/>
+         
+          <Route path='/chart' element={<Charts/>} />
+          <Route path='/sidebar' element={<Sidebar/>} />
+          
 
         </Routes>
       </div>
