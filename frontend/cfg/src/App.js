@@ -23,6 +23,7 @@ import VolunteerRenewal from './components/VolunteerRenewal';
 import PartnerLogin from './components/PartnerLogin';
 import VolunteerLogin from './components/VolunteerLogin';
 import AdminLogin from './components/AdminLogin';
+import LandingPage from './components/LandingPage';
 
 const initialVolunteers = [
   {
@@ -120,7 +121,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<VolunteerPage/>} />
+          <Route path="/" element={<LandingPage></LandingPage>} />
+          <Route path="/volunteer" element={<VolunteerPage/>} />
           <Route path="/details/:id" element={<VolunteerDetails />} />
           <Route path="/update-status/:id" element={<UpdateStatusPage/>} />
           <Route path="/founders" element={<FoundersPage/>} />
