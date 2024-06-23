@@ -23,6 +23,7 @@ import VolunteerRenewal from './components/VolunteerRenewal';
 import PartnerLogin from './components/PartnerLogin';
 import VolunteerLogin from './components/VolunteerLogin';
 import AdminLogin from './components/AdminLogin';
+
 import Navbar from './components/Navbar';
 import Student from './components/Student';
 import Course from './components/Course';
@@ -33,7 +34,10 @@ import Volunteer from './components/Volunteer';
 
 
 
+import SidebarAdmin from './components/SidebarAdmin';
+import LandingPage from './components/LandingPage';
 import Sidebar from './components/Sidebar';
+
 
 const initialVolunteers = [
   {
@@ -137,7 +141,8 @@ function App() {
       {/* <Navbar /> */}
       <div className="App">
         <Routes>
-          <Route path="/" element={<VolunteerPage/>} />
+          <Route path="/" element={<LandingPage></LandingPage>} />
+          <Route path="/volunteer" element={<VolunteerPage/>} />
           <Route path="/details/:id" element={<VolunteerDetails />} />
           <Route path="/update-status/:id" element={<UpdateStatusPage/>} />
           <Route path="/founders" element={<FoundersPage/>} />
@@ -151,9 +156,9 @@ function App() {
           <Route path='/studentForm' element={<StudentForm/>} />
           <Route path='/renewalForm' element={<RenewalForm/>} />
 
-          <Route path='/ngoRenewal' element={<NgoRenewal/>}/>
-          <Route path='/volunteerRenewal' element={<VolunteerRenewal/>}/>
-          <Route path='/partnerlogin' element={<PartnerLogin/>}/>
+          {/* <Route path='/ngoRenewal' element={<NgoRenewal/>}/> */}
+          {/* <Route path='/volunteerRenewal' element={<VolunteerRenewal/>}/> */}
+          {/* <Route path='/partnerlogin' element={<PartnerLogin/>}/> */}
           <Route path='/volunteerLogin' element={<VolunteerLogin/>}/> 
           <Route path='/adminLogin' element={<AdminLogin/>}/>
 
@@ -167,7 +172,9 @@ function App() {
           <Route path='/courseAnalysis' element={<Course/>}/>
          
           <Route path='/chart' element={<Charts/>} />
-          <Route path='/sidebar' element={<Sidebar/>} />
+          <Route path='/sidebar' element={<SidebarAdmin/>} />
+
+          <Route path='/admin/sidebar' element={<Sidebar/> }/>
           
 
         </Routes>

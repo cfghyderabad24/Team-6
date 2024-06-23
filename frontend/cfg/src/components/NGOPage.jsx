@@ -37,8 +37,8 @@ const NGOPage = () => {
   return (
     <div className="ngo-page">
       <header className="header">
-        <h1>NGO</h1>
-        <button className="logout-button">Log out</button>
+        <h1 >NGO</h1>
+        {/* <button className="logout-button">Log out</button> */}
       </header>
       <h1>Pending Applications</h1>
       <table className="applications-table">

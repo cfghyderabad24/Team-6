@@ -5,16 +5,16 @@ import com.bhatevara.backend.entity.Student;
 import com.bhatevara.backend.service.EventService;
 import com.bhatevara.backend.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+
+@RestController
+@RequestMapping("/api/students")
 public class StudentController {
 
     @Autowired
@@ -23,40 +23,49 @@ public class StudentController {
     @Autowired
     private EventService eventService;
 
-    @GetMapping("/students")
-    public String listStudents(Model model) {
+    @GetMapping
+    public ResponseEntity<List<Student>> getAllStudents() {
         List<Student> students = studentService.getAllStudents();
-        model.addAttribute("students", students);
-        return "students";
+        return ResponseEntity.ok(students);
     }
 
-    @GetMapping("/students/new")
-    public String showNewStudentForm(Model model) {
-        List<Event> events = eventService.getAllEvents();
-        model.addAttribute("student", new Student());
-        model.addAttribute("events", events);
-        return "newStudent";
+    @PostMapping
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        Student savedStudent = studentService.saveStudent(student);
+        return ResponseEntity.ok(savedStudent);
     }
 
-    @PostMapping("/students/save")
-    public String saveStudent(@ModelAttribute Student student) {
-        studentService.saveStudent(student);
-        return "redirect:/students";
-    }
-
-    @GetMapping("/students/edit/{id}")
-    public String showEditStudentForm(@PathVariable Long id, Model model) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
         Student student = studentService.getStudentById(id);
-        List<Event> events = eventService.getAllEvents();
-        model.addAttribute("student", student);
-        model.addAttribute("events", events);
-        return "editStudent";
+        if (student != null) {
+            return ResponseEntity.ok(student);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PostMapping("/students/update/{id}")
-    public String updateStudent(@PathVariable Long id, @ModelAttribute Student student) {
-        student.setId(id);
-        studentService.saveStudent(student);
-        return "redirect:/students";
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+        Student existingStudent = studentService.getStudentById(id);
+        if (existingStudent != null) {
+            student.setId(id);
+            Student updatedStudent = studentService.saveStudent(student);
+            return ResponseEntity.ok(updatedStudent);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/events")
+    public ResponseEntity<List<Event>> getAllEvents() {
+        List<Event> events = eventService.getAllEvents();
+        return ResponseEntity.ok(events);
     }
 }

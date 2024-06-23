@@ -45,9 +45,9 @@ public class LoginController {
                 return ResponseEntity.ok("Success");
             }
 
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Failed");
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Failed");
+
     }
 
     @PostMapping("/partner")
@@ -57,10 +57,9 @@ public class LoginController {
             if(partner.getPassword().equals(temp.getPassword())) {
                 return ResponseEntity.ok("Success");
             }
-
-        } else {
-            return ResponseEntity.ok("Failed");
         }
+        return ResponseEntity.ok("Failed");
+
     }
 
     @PostMapping("/volunteer")
@@ -71,9 +70,7 @@ public class LoginController {
                 return ResponseEntity.ok("Success");
             }
         }
-
-
-            return ResponseEntity.ok("Failed");
+        return ResponseEntity.ok("Failed");
 
     }
 }
