@@ -2,7 +2,8 @@
   background-color: rgb(198, 198, 200);
   color: white;
   transition: all 0.5s;
-  width: 20%; /* Set the width explicitly to 20% */
+  margin-top: 70px;
+  width: 12%; /* Set the width explicitly to 20% */
 }
 
 .sidebar-title {

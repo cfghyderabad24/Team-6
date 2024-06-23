@@ -27,6 +27,13 @@ function SidebarAdmin({ openSidebarToggle }) {
             <BsPeopleFill className='icon' /> Alumni
           </a>
         </li>
+        <li className='sidebar-list-item'>
+        <a href="/chart">Year Wise Analysis</a>
+        </li>
+        <li className='sidebar-list-item'>
+        <a href="/courseAnalysis">Course Analysis</a>
+        </li>
+       
       </ul>
     </aside>
   );

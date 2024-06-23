@@ -30,6 +30,7 @@ const LandingPage = () => {
               <li><a href="#founders">Founders</a></li>
               <li><a href="#partner-ngos">Partner NGOs</a></li>
               <li><a href="#alumni-reviews">Alumni Reviews</a></li>
+             
             </ul>
           </nav>
         </div>
